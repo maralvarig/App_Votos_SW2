@@ -1,0 +1,4 @@
+Ramas:
+	La rama principal será la rama "revisado", en esta rama solo puede introducirse codigo el cual ya haya sido revisado y comprobado que funciona por los miembros del grupo. A esta rama solo se puede subir codigo el cual provenga de la rama "implementado".
+	La rama "implementado" es la rama en la que se cual los distintos miembros del grupo pueden añadir funcionalidades de sus repositorios personales con el fin de probar si existen conflictos con el codigo de los otros integrantes del grupo.
+	La rama "personal", cada miembro del grupo posee una y contiene una version de la rama "revisado", todos tienen la misma, en la cual cada miembro del grupo podra usarla a su libre disposición. Esta rama solo podra subir el codigo a la rama "implementado".
