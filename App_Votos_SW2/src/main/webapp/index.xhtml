@@ -1,12 +1,72 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<ui:composition template="./template/plantillaPublicaciones.xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+ <ui:define name="content">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VeeVote</title>
+  
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <!-- HOJA DE ESTILOS -->
+    <h:outputStylesheet library="css" name="index.css" />
+    
+</h:head>
+
+<h:body>
+    
+    <!--<script>window.alert("POP UP permitir cookies");</script>-->
+    <!--
+    <nav id="navbar">
+        <div class="navbar-left">
+            <a href="#">VeeVote</a>
+        </div>
+        <div class="navbar-right">
+            <a href="#">Menu1</a>
+            <a href="#">Menu2</a>
+            <a href="#">Menu3</a>
+            <a href="#">Menu4</a>
+        </div>
+    </nav>-->
+
+    <div class="header" id="descripcion">
+        <h1>¡Vota en VeeVote!</h1>
+        <p>Apuntate al futuro creando procesos electorales telematicos.</p>
+    </div>
+    <h:form>
+    <div class="section" id="elecciones">
+        <div class="elecciones-container">
+            <div class="elecciones-info-container">
+                <p:commandLink id="elec_programadas" action="#{indexController.irElecProgramadas()}">
+                    <h:outputText value="Elecciones programadas"/>
+                </p:commandLink>
+                <p:message for="elec_programadas" />
+                <h2>Elecciones programadas</h2>
+                // Proximamente
+            </div>
+            <hr/>
+            <div class="elecciones-info-container">
+                <p:commandLink id="elec_anteriores" action="#{indexController.irElecAnteriores()}">
+                    <h:outputText value="Elecciones anteriores"/>
+                </p:commandLink>
+                <p:message for="elec_anteriores" />
+                <h2>Elecciones anteriores</h2>
+                // Proximamente
+            </div>
+            <hr/>
+        </div>
+    </div>
+    </h:form>
+
+</h:body>
 </html>
+ </ui:define>
+</ui:composition>
 
