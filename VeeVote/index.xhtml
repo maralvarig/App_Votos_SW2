@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns:p="http://primefaces.org/ui"
+        xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VeeVote</title>
+  
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <!-- HOJA DE ESTILOS -->
+    <link rel="stylesheet" type="text/css" href="styles/index.css" />
+</head>
+
+<body>
+    <!--<script>window.alert("POP UP permitir cookies");</script>-->
+    <!--
+    <nav id="navbar">
+        <div class="navbar-left">
+            <a href="#">VeeVote</a>
+        </div>
+        <div class="navbar-right">
+            <a href="#">Menu1</a>
+            <a href="#">Menu2</a>
+            <a href="#">Menu3</a>
+            <a href="#">Menu4</a>
+        </div>
+    </nav>-->
+    <div class="navbar">
+        <a href="index.xhtml">VeeVOTE</a>
+    </div>
+
+    <div class="header" id="descripcion">
+        <h1>¡Vota en VeeVote!</h1>
+        <p>Apuntate al futuro creando procesos electorales telematicos.</p>
+    </div>
+
+    <div class="section" id="elecciones">
+        <div class="elecciones-container">
+            <div class="elecciones-info-container" onclick="openPage(1)">
+                <h2>Elecciones programadas</h2>
+                // Proximamente
+            </div>
+            <hr/>
+            <div class="elecciones-info-container">
+                <h2>Elecciones anteriores</h2>
+                // Proximamente
+            </div>
+            <hr/>
+        </div>
+        
+    </div>
+
+    <div class="footer">
+        <h2>Proyecto Ingenieria del Software II</h2>
+        <div class="footer-container">
+
+            <div class="footer-info-container">
+                <h3>Acerca de VeeVote</h3>
+                <p>VeeVote es un proyecto innovador creado para modernizar los procesos electorales, que se caracteriza
+                    por su fiabilidad, reduccion de tiempos de escrutinio y responsabilidad con el medio ambiente</p>
+            </div>
+
+            <div class="footer-info-container">
+                <h3>Encunetra nuestro trabajo</h3>
+                <p><i class="fa fa-github" style="font-size:larger"></i> &nbsp;GitHub</p>
+            </div>
+
+            <div class="footer-info-container">
+                <h3>Contacto</h3>
+                <p><i class="fa fa-envelope"></i> &nbsp;Malvai00@estudiantes.unileon.es</p>
+                <p><i class="fa fa-envelope"></i> &nbsp;Dnarcr00@estudiantes.unileon.es</p>
+                <p><i class="fa fa-envelope"></i> &nbsp;Spereb05@estudiantes.unileon.es</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function openPage(num) {
+            if(num == 0){
+                window.open("index.xhtml", "_self");
+            }else if (num == 1) {
+                window.open("eleccionesProgramadas.xhtml", "_self");
+            } else if (num == 2) {
+                window.open("eleccionesAnteriores.xhtml", "_self");
+            }
+        }
+    </script>
+</body>
+
+</html>

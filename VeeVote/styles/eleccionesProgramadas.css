@@ -1,0 +1,125 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'century gothic';
+    /*font-family: Cambria;*/
+    background-color: #F7F6F2;
+}
+
+/**
+*
+*   BARRA DE NAVEGACION
+*
+*/
+
+div.nav {
+    background-color: #4B6587;
+    padding: 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+div.nav a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 50px;
+}
+
+/**
+*
+*   ELECCIONES
+*
+*/
+
+div.section {
+    padding: 30px;
+}
+
+.colecciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.coleccion {
+    position: relative;
+    background-color: white;
+    height: 500px;
+    width: 350px;
+    border-radius: 5px;
+    box-shadow: 1.5px 1.5px 8px -1px #4B6587;
+}
+
+img {
+    max-width:100%;
+    max-height:100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    pointer-events: none;
+}
+
+.descripcion {
+    padding: 20px;
+}
+
+.boton {
+    position: absolute;
+    bottom: 20px
+}
+
+button {
+    height: 45px;
+    width: 310px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 700;
+    background-color: #C8C6C6;
+    color: black;
+    cursor: pointer;
+    box-shadow: 1.5px 1.5px 8px -1px #4B6587;
+    margin-top: 10px;
+}
+
+button:hover{
+    background-color: black;
+    color: #C8C6C6;    
+    box-shadow: 1.5px 1.5px 8px -1px #C8C6C6;
+}
+
+button:disabled{
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/**
+*
+*   FOOTER
+*
+*/
+
+div.footer {
+    background-color: #F0E5CF;
+    text-align: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-info-container{
+    margin-right: 70px;
+    max-width: 600px;
+    text-align: left;
+}
