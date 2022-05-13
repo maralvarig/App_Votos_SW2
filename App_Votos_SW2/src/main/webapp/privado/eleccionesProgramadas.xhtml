@@ -20,7 +20,7 @@
 </h:head>
 
 <h:body>
-
+    <h:form>
     <div class="section" id="eleccionesColeccion">
         <div class="colecciones">
             <div id="n1" class="coleccion">
@@ -32,7 +32,8 @@
                     <p class="fecha">02/05/12</p>
                     <div class="boton">
                         <p:commandButton value="PROGRAMAS ELECTORALES"/>
-                        <p:commandButton value="¡VOTA!"/>
+                        <p:commandButton id="voto1" value="¡VOTA!" action="#{eleccionesProgramadasController.irVotar()}"/>
+                        <p:message for="voto1" />
                     </div>
                 </div>
             </div>
@@ -95,6 +96,7 @@
             </div>
         </div>
     </div>
+  </h:form>
 </h:body>
 </html>
  </ui:define>
