@@ -29,6 +29,11 @@ public class eleccionesProgramadasController implements Serializable{
     public String irVotar(){
         return "votar.xhtml?faces-redirect=true";
     }
+	
+	//Metodo que lleva a la pagina de las listas de los partidos
+    public String visualizarListas(){
+        return "listas.xhtml?faces-redirect=true";
+    }
     
     public String votar(){
         String sentencia = "Has votado con DNI: "+DNI;
