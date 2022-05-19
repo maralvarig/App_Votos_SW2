@@ -31,8 +31,9 @@ public class eleccionesProgramadasController implements Serializable{
     }
     
     public String votar(){
-        String sentencia = "Has votado con DNI: "+DNI;
-        FacesContext.getCurrentInstance().addMessage(null,  new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Has votado con DNI: "+DNI));
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+        String sentencia = "Has votado con DNI: "+DNI+" al partido: "+partido;
+        FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_WARN,sentencia, null));
         return "/index.xhtml?faces-redirect=true";
     }
 
