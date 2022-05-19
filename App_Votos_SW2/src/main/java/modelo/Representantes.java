@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -37,8 +38,12 @@ public class Representantes implements Serializable{
     @Column(name="Segundo_Apellido")
     private String Segundo_Apellido;
     
+    @Column(name="Numero_Lista")
+    private String Numero_Lista;
+
+     
     @JoinColumn(name="idPartidos")
-    @OneToMany(cascade=CascadeType.PERSIST)
+    @ManyToOne
     private Partidos Partidos_idPartidos;
 
     public int getIdRepresentantes() {
@@ -48,7 +53,13 @@ public class Representantes implements Serializable{
     public void setIdRepresentantes(int idRepresentantes) {
         this.idRepresentantes = idRepresentantes;
     }
+    public String getNumero_Lista() {
+        return Numero_Lista;
+    }
 
+    public void setNumero_Lista(String Numero_Lista) {
+        this.Numero_Lista = Numero_Lista;
+    }
     public String getNombre() {
         return Nombre;
     }

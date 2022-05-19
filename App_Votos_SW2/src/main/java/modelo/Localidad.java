@@ -21,9 +21,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Localidad")
 public class Localidad {
-     @Id
+    @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int idEscrutinio;
+    private int idLocalidad;
     
     @Column(name="Pais")
     private String Pais;

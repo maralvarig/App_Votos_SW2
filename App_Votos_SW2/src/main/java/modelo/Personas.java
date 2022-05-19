@@ -6,6 +6,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -44,11 +48,34 @@ public class Personas implements Serializable{
     private String Pasaporte;
     
     @JoinColumn(name="idLocalidad")
-    @OneToMany(cascade=CascadeType.PERSIST)
-    private Localidad idLocalidad; 
+    @ManyToOne
+    private Localidad idLocalidad;
 
+    @ManyToMany
+    @JoinTable(
+    name = "confirmacionvoto", 
+    joinColumns = @JoinColumn(name = "Personas_idPersona"), 
+    inverseJoinColumns = @JoinColumn(name = "Elecciones_idElecciones"))
+    Set<Elecciones> Elecciones;
+    
     public int getIdPersona() {
         return idPersona;
+    }
+
+    public Localidad getIdLocalidad() {
+        return idLocalidad;
+    }
+
+    public void setIdLocalidad(Localidad idLocalidad) {
+        this.idLocalidad = idLocalidad;
+    }
+
+    public Set<Elecciones> getElecciones() {
+        return Elecciones;
+    }
+
+    public void setElecciones(Set<Elecciones> Elecciones) {
+        this.Elecciones = Elecciones;
     }
 
     public void setIdPersona(int idPersona) {
@@ -95,12 +122,6 @@ public class Personas implements Serializable{
         this.Pasaporte = Pasaporte;
     }
 
-    public Localidad getIdLocalidad() {
-        return idLocalidad;
-    }
-
-    public void setIdLocalidad(Localidad idLocalidad) {
-        this.idLocalidad = idLocalidad;
-    }
+   
 
 }
