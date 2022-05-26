@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <!-- HOJA DE ESTILOS -->
-    <h:outputStylesheet library="css" name="index.css" />
+    <h:outputStylesheet library="css" name="eleccionesProgramadas.css" />
 </h:head>
 
 <h:body>
@@ -31,7 +31,7 @@
                     <h3>Elecciones generales de España noviembre 2022</h3>
                     <p class="fecha">02/05/12</p>
                     <div class="boton">
-                        <p:commandButton value="PROGRAMAS ELECTORALES"/>
+                        <p:commandButton value="PROGRAMAS ELECTORALES" action="#{eleccionesProgramadasController.visualizarListas()}"/>
                         <p:commandButton id="voto1" value="¡VOTA!" action="#{eleccionesProgramadasController.irVotar()}"/>
                         <p:message for="voto1" />
                     </div>

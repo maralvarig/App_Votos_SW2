@@ -29,5 +29,11 @@ public interface PersonasFacadeLocal {
     List<Personas> findRange(int[] range);
 
     int count();
+
+    public boolean existe(String DNI);
+
+    
+
+    public Object getPersonaDNI(String DNI);
     
 }

@@ -32,11 +32,11 @@ public class Voto implements Serializable{
     @Column(name="Voto")
     private String Voto;
     
-    @JoinColumn(name="idLocalidad")
+    @JoinColumn(name="Localidad_idLocalidad")
     @ManyToOne
     private Localidad Localidad_idLocalidad;
     
-    @JoinColumn(name="idElecciones")
+    @JoinColumn(name="Elecciones_idElecciones")
     @ManyToOne
     private Elecciones Elecciones_idElecciones;
 

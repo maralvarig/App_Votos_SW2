@@ -39,7 +39,17 @@
 
             <div class="footer-info-container">
                 <h3>Encuentra nuestro trabajo</h3>
+                <h:form>
                 <p><i class="fa fa-github" style="font-size:larger"></i> &nbsp;GitHub</p>
+                    <p:commandLink id="header" onclick="PF('dlg1').show()" style="margin-right:20px;">
+                       Acceso para organismos públicos
+                    </p:commandLink>
+                    <p:dialog header="Introduzca sus credenciales" widgetVar="dlg1" minHeight="40" width="350" showEffect="fade">
+                        Usuario<h:inputText value="#{adminController.user}" required="true" requiredMessage="Introduzca Usuario"/><br/>
+                        Contraseña<h:inputText value="#{adminController.password}" required="true" requiredMessage="Introduzca Contraseña"/><br/>
+                        <p:commandButton id="submitButton" value="Iniciar Sesion" action="#{adminController.administrar()}"/>
+                    </p:dialog>
+                </h:form>
             </div>
 
             <div class="footer-info-container">

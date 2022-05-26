@@ -6,6 +6,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -56,7 +57,14 @@ public class Personas implements Serializable{
     name = "confirmacionvoto", 
     joinColumns = @JoinColumn(name = "Personas_idPersona"), 
     inverseJoinColumns = @JoinColumn(name = "Elecciones_idElecciones"))
-    Set<Elecciones> Elecciones;
+    ArrayList<Elecciones> Elecciones;
+    
+    public void addEleccion(Elecciones elecciones){
+        if(this.Elecciones == null){
+            this.Elecciones = new ArrayList<Elecciones>();
+        }
+        this.Elecciones.add(elecciones);
+    }
     
     public int getIdPersona() {
         return idPersona;
@@ -70,11 +78,11 @@ public class Personas implements Serializable{
         this.idLocalidad = idLocalidad;
     }
 
-    public Set<Elecciones> getElecciones() {
+    public ArrayList<Elecciones> getElecciones() {
         return Elecciones;
     }
 
-    public void setElecciones(Set<Elecciones> Elecciones) {
+    public void setElecciones(ArrayList<Elecciones> Elecciones) {
         this.Elecciones = Elecciones;
     }
 

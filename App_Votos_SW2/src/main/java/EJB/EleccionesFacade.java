@@ -5,10 +5,13 @@
  */
 package EJB;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.Elecciones;
+import modelo.Personas;
 
 /**
  *
@@ -29,4 +32,14 @@ public class EleccionesFacade extends AbstractFacade<Elecciones> implements Elec
         super(Elecciones.class);
     }
     
+    @Override
+    public Elecciones getElecction(int i){
+        String consulta = "FROM Elecciones e WHERE e.idElecciones=:param1";
+        Query query = em.createQuery(consulta);
+        query.setParameter("param1", i);
+        
+        List<Elecciones> resultado = query.getResultList();
+        
+        return resultado.get(0); 
+    }
 }

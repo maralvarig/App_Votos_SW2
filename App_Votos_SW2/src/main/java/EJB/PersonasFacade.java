@@ -5,9 +5,11 @@
  */
 package EJB;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.Personas;
 
 /**
@@ -29,4 +31,24 @@ public class PersonasFacade extends AbstractFacade<Personas> implements Personas
         super(Personas.class);
     }
     
+    @Override
+    public boolean existe(String DNI){
+        String consulta = "FROM Personas p WHERE p.DNI=:param1";
+        Query query = em.createQuery(consulta);
+        query.setParameter("param1", DNI);
+        
+        List<Personas> resultado = query.getResultList();
+        
+        return (resultado.size() != 0);
+    }
+    @Override
+    public Personas getPersonaDNI(String DNI){
+        String consulta = "FROM Personas p WHERE p.DNI=:param1";
+        Query query = em.createQuery(consulta);
+        query.setParameter("param1", DNI);
+        
+        List<Personas> resultado = query.getResultList();
+        
+        return resultado.get(0);
+    }
 }

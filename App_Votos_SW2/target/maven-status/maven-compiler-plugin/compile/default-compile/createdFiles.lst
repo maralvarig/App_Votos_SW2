@@ -25,4 +25,6 @@ EJB\RepresentantesFacadeLocal.class
 EJB\AdministradorFacadeLocal.class
 EJB\PartidosFacadeLocal.class
 modelo\Administrador.class
+controller\IndexController.class
 modelo\Partidos.class
+controller\eleccionesProgramadasController.class

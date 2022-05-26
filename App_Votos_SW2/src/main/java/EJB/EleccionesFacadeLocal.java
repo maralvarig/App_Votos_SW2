@@ -29,5 +29,7 @@ public interface EleccionesFacadeLocal {
     List<Elecciones> findRange(int[] range);
 
     int count();
+
+    public Elecciones getElecction(int i);
     
 }
