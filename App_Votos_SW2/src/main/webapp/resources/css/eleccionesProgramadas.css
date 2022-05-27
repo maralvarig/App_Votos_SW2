@@ -27,7 +27,7 @@ div.section {
     box-shadow: 1.5px 1.5px 8px -1px #4B6587;
 }
 
-img {
+.img {
     max-width:100%;
     max-height:100%;
     border-top-left-radius: 5px;
@@ -44,7 +44,7 @@ img {
     bottom: 20px
 }
 
-button {
+.boton_style {
     height: 45px;
     width: 310px;
     border: none;
@@ -58,13 +58,13 @@ button {
     margin-top: 10px;
 }
 
-button:hover{
+.boton_style:hover{
     background-color: black;
     color: #C8C6C6;    
     box-shadow: 1.5px 1.5px 8px -1px #C8C6C6;
 }
 
-button:disabled{
+.boton_style:disabled{
     opacity: 0.3;
     pointer-events: none;
 }
