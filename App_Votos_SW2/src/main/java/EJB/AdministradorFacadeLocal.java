@@ -30,4 +30,6 @@ public interface AdministradorFacadeLocal {
 
     int count();
     
+    boolean existe(String user, String password);
+    
 }

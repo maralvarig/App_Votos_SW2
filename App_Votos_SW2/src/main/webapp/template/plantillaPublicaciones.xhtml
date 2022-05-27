@@ -42,9 +42,9 @@
                             <h3>Encuentra nuestro trabajo</h3>
                             <h:form>
                                 <p><i class="fa fa-github" style="font-size:larger"></i> &nbsp;GitHub</p>
-                                <h:commandLink id="header" onclick="PF('dlg1').show()" styleClass="a">
+                                <p:commandLink id="header" onclick="PF('dlg1').show()" styleClass="a">
                                     <h:outputText value="Acceso para organismos públicos"/>
-                                </h:commandLink>
+                                </p:commandLink>
                                 <p:dialog header="Introduzca sus credenciales" widgetVar="dlg1" minHeight="40" width="350" showEffect="fade">
                                     Usuario<h:inputText value="#{adminController.user}" required="true" requiredMessage="Introduzca Usuario"/><br/>
                                     Contraseña<h:inputText value="#{adminController.password}" required="true" requiredMessage="Introduzca Contraseña"/><br/>

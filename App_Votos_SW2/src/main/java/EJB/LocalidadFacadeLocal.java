@@ -30,4 +30,7 @@ public interface LocalidadFacadeLocal {
 
     int count();
     
+    public List<Localidad> obtenerLocalidades();
+        
+    
 }

@@ -5,9 +5,12 @@
  */
 package EJB;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.Localidad;
 
 /**
@@ -29,4 +32,13 @@ public class LocalidadFacade extends AbstractFacade<Localidad> implements Locali
         super(Localidad.class);
     }
     
+    @Override
+    public List<Localidad> obtenerLocalidades(){
+        List<Localidad> localidades = new ArrayList();
+        Localidad l = null;
+        String consulta = "SELECT * FROM Localidad";
+        Query query = em.createQuery(consulta);
+        List<Localidad> resultado = query.getResultList();
+        return resultado;
+    }
 }
