@@ -38,7 +38,7 @@
                 <h:inputText id="DNI" value="#{eleccionesProgramadasController.DNI}" required="true" requiredMessage="Introduzca un DNI"/><br/>
             </h:panelGrid>
             <h:panelGrid columns="1" cellpadding="5">
-                <p:commandButton value="VOTAR" type="button" onclick="PF('dlg1').show();" />
+                <p:commandButton value="VOTAR" action="#{eleccionesProgramadasController.votar()}" update="grid"/>
             </h:panelGrid>
             <p:dialog header="Votacion" widgetVar="dlg1" minHeight="40">
                 <h:outputText value="Su voto ha sido generado correctamente" /><br/>

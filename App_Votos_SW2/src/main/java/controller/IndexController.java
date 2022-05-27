@@ -6,6 +6,7 @@
 package controller;
 
 import java.io.Serializable;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -19,6 +20,10 @@ public class IndexController implements Serializable{
     
     //Metodo que lleva al inicio de la página
     public String irInicio(){
+        //INVALIDA LA SESION DEL ADMIN
+        if (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("admin") != null){
+            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        }
         return "/index.xhtml?faces-redirect=true";
     }
     

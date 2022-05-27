@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -32,7 +33,7 @@ public class Partidos implements Serializable{
     private String Nombre;
     
     @JoinColumn(name="idElecciones")
-    @OneToMany(cascade=CascadeType.PERSIST)
+    @ManyToOne
     private Elecciones Elecciones_idElecciones; 
 
     public int getIdPartidos() {
