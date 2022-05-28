@@ -22,6 +22,8 @@
             <p:messages id="messages">
                 <p:autoUpdate/>
             </p:messages>
+            <h:body onload="#{adminController.verificarYMostrar()}">
+            <h:commandButton id="botonInicio" value="Cerrar Sesion" styleClass="ui-button-info" action="#{adminController.destruirSesion()}"/>
             <h:panelGrid id="grid">
                 <p:outputLabel for="tipo" value="Tipo: "/>
                 <p:selectOneMenu id="tipo" value="#{buscadorEleccionesController.eleccion.tipo}">
@@ -50,6 +52,7 @@
                 </p:column>
             </p:dataTable>
             </h:panelGrid>
+            </h:body>
         </h:form>
 
 </html>

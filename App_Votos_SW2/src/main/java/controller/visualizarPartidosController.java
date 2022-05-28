@@ -6,6 +6,7 @@
 package controller;
 
 import EJB.PartidosFacadeLocal;
+import EJB.RepresentantesFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -15,6 +16,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import modelo.Elecciones;
 import modelo.Partidos;
+import modelo.Representantes;
 
 /**
  *
@@ -30,15 +32,24 @@ public class visualizarPartidosController implements Serializable{
     private Elecciones eleccion;        
     private List<Partidos> listaPartidos;
     private Partidos partido;
+    private List<Representantes> listaRepresentantes;
     
     @EJB
     private PartidosFacadeLocal partidosEJB;
+    
+    @EJB
+    private RepresentantesFacadeLocal representanteEJB;
     
     @PostConstruct
     public void init(){
         partido = new Partidos();
         eleccion = busEleCon.getEleccion();
         listaPartidos = partidosEJB.encontrarPartidos(eleccion);
+    }
+    
+    public void cargarRepresentantes(Partidos partido){
+        listaRepresentantes = representanteEJB.encontrarRepresentantes(partido);
+        System.out.println("TAM:"+listaRepresentantes.size());
     }
 
     public buscadorEleccionesController getBusEleCon() {
@@ -80,6 +91,23 @@ public class visualizarPartidosController implements Serializable{
     public void setPartidosEJB(PartidosFacadeLocal partidosEJB) {
         this.partidosEJB = partidosEJB;
     }
+
+    public List<Representantes> getListaRepresentantes() {
+        return listaRepresentantes;
+    }
+
+    public void setListaRepresentantes(List<Representantes> listaRepresentantes) {
+        this.listaRepresentantes = listaRepresentantes;
+    }
+
+    public RepresentantesFacadeLocal getRepresentanteEJB() {
+        return representanteEJB;
+    }
+
+    public void setRepresentanteEJB(RepresentantesFacadeLocal representanteEJB) {
+        this.representanteEJB = representanteEJB;
+    }
+    
     
     
 }

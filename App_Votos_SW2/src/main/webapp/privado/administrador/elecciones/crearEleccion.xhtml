@@ -22,6 +22,8 @@
             <p:messages id="messages">
                 <p:autoUpdate/>
             </p:messages>
+            <h:body onload="#{adminController.verificarYMostrar()}">
+            <h:commandButton id="botonInicio" value="Cerrar Sesion" styleClass="ui-button-info" action="#{adminController.destruirSesion()}"/>
             <h:panelGrid id="grid">
                 <p:fieldset legend="Datos eleccion">
                     <h:panelGrid columns="3" cellpadding="7">
@@ -46,6 +48,7 @@
                 </p:fieldset>
             </h:panelGrid>
     <p:commandButton id="submitButton" value="Crear" action="#{adminController.crearEleccion()}" update="grid"/>
+            </h:body>
         </h:form>
 
 </html>

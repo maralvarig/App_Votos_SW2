@@ -19,27 +19,29 @@
     
 </h:head>
 <h:form>
-            <p:messages id="messages">
-                <p:autoUpdate/>
-            </p:messages>
+            <h:body onload="#{adminController.verificarYMostrar()}">
+            <h:commandButton id="botonInicio" value="Cerrar Sesion" styleClass="ui-button-info" action="#{adminController.destruirSesion()}"/>
             <h:panelGrid id="grid">                
-            <p:dataTable var="partido" value="#{buscadorEleccionesController.listaElecciones}" allowUnsorting="true" sortMode="single">
-                <p:column sortBy="#{eleccion.fecha}" headerText="Fecha">
-                    <h:outputText value="#{eleccion.fecha}"/>
+                <p:dataTable var="partido" value="#{visualizarPartidosController.listaPartidos}" allowUnsorting="true" sortMode="single">
+                        <p:column sortBy="#{partido.nombre}" headerText="Partido">
+                        <h:outputText value="#{partido.nombre}"/>
+                    </p:column>
+                    <p:column headerText="Representantes">
+                        <h:commandLink action="listasPartidos" actionListener="#{visualizarPartidosController.cargarRepresentantes(partido)}">
+                            <h:graphicImage library="img" name="otros/partidos.png" width="30px" />
+                        </h:commandLink>
+                    </p:column>
+                </p:dataTable>
+            </h:panelGrid>
+            <p:dataTable var="representante" value="#{visualizarPartidosController.listaRepresentantes}" allowUnsorting="true" sortMode="single">
+                <p:column sortBy="#{representante.numero_Lista}" headerText="Numero en la lista">
+                    <h:outputText value="#{representante.numero_Lista}"/>
                 </p:column>
-                <p:column sortBy="#{eleccion.tipo}" headerText="Tipo" sortOrder="asc">
-                    <h:outputText value="#{eleccion.tipo}"/>
-                </p:column>
-                <p:column sortBy="#{eleccion.localidad_idLocalidad.comunidad_Autonoma} #{eleccion.localidad_idLocalidad.provincia} #{eleccion.localidad_idLocalidad.municipio} #{eleccion.localidad_idLocalidad.codigo_Postal}" headerText="Localidad">
-                    <h:outputText value="#{eleccion.localidad_idLocalidad.comunidad_Autonoma} #{eleccion.localidad_idLocalidad.provincia} #{eleccion.localidad_idLocalidad.municipio} #{eleccion.localidad_idLocalidad.codigo_Postal}"/>
-                </p:column>
-                <p:column headerText="Partidos e integrantes">
-                    <h:commandLink action="visualizarPartidos" actionListener="#{buscadorEleccionesController.visualizarPartidos(eleccion)}">
-                        <h:graphicImage library="img" name="otros/partidos.png" width="30px" />
-                    </h:commandLink>
+                <p:column sortBy="#{representante.primer_Apellido}" headerText="Nombre">
+                    <h:outputText value="#{representante.nombre} #{representante.primer_Apellido} #{representante.segundo_Apellido}"/>
                 </p:column>
             </p:dataTable>
-            </h:panelGrid>
+            </h:body>
         </h:form>
 
 </html>

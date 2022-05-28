@@ -34,9 +34,9 @@ public class PartidosFacade extends AbstractFacade<Partidos> implements Partidos
     
     @Override
     public List<Partidos> encontrarPartidos(Elecciones eleccion){
-        String consulta = "FROM Partidos p WHERE e.Elecciones_idElecciones=:param1";
+        String consulta = "FROM Partidos p WHERE p.Elecciones_idElecciones=:param1";
         Query query = em.createQuery(consulta);
-        query.setParameter("param1", eleccion.getIdElecciones());
+        query.setParameter("param1", eleccion);
         
         List<Partidos> listaPartidos = query.getResultList();
         return listaPartidos;

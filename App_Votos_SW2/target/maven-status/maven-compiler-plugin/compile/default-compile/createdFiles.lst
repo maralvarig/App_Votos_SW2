@@ -30,3 +30,4 @@ modelo\Administrador.class
 controller\IndexController.class
 modelo\Partidos.class
 controller\eleccionesProgramadasController.class
+controller\visualizarPartidosController.class

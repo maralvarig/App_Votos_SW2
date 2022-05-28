@@ -42,7 +42,7 @@ public class Representantes implements Serializable{
     private String Numero_Lista;
 
      
-    @JoinColumn(name="idPartidos")
+    @JoinColumn(name="Partidos_idPartidos")
     @ManyToOne
     private Partidos Partidos_idPartidos;
 
