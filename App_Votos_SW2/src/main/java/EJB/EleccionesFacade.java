@@ -11,7 +11,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import modelo.Elecciones;
+<<<<<<< Updated upstream
 import modelo.Personas;
+=======
+import modelo.Partidos;
+>>>>>>> Stashed changes
 
 /**
  *
@@ -42,4 +46,18 @@ public class EleccionesFacade extends AbstractFacade<Elecciones> implements Elec
         
         return resultado.get(0); 
     }
+<<<<<<< Updated upstream
+=======
+    
+    @Override
+    public List<Elecciones> buscarElecciones(Elecciones eleccion){
+        String consulta = "FROM Elecciones e WHERE e.Tipo=:param1";
+        Query query = em.createQuery(consulta);
+        query.setParameter("param1", eleccion.getTipo());
+        
+        List<Elecciones> listaElecciones = query.getResultList();
+        return listaElecciones;
+    }
+
+>>>>>>> Stashed changes
 }

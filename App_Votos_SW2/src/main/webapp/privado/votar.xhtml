@@ -19,6 +19,7 @@
     <h:outputStylesheet library="css" name="index.css" />
 </h:head>
 
+<<<<<<< Updated upstream
     <h:body>
         <div class="card">
         <h:form>
@@ -50,4 +51,44 @@
 
 </html>
  </ui:define>
+=======
+            <h:body>
+                <h:form>
+                    <p:messages id="messages"> 
+                            <p:autoUpdate/>
+                    </p:messages>
+                    <div class="section" id="cajaVoto">
+                        <div class="section_DNI" id="section_DNI">
+                            <h:inputText class="input_DNI" id="DNI" value="#{eleccionesProgramadasController.DNI}" required="true" requiredMessage="Introduzca un DNI" pt:placeholder="Introduce el DNI"/>
+                            <h:commandButton class="boton_style" id="button_DNI" value="VALIDAR" action="#{eleccionesProgramadasController.validar()}"/>
+                        </div>
+                        <div class="section_VOTO" id="section_VOTO">
+                            <!-- SE QUEDS COMO POSIBLE ALTERNATIVA
+                                <select id="partidosPoliticos" name="partidosPoliticos">
+                                <option value="selecciona">Selecciona...</option>
+                                <option value="australia">Australia</option>
+                                <option value="canada">Canada</option>
+                                <option value="usa">USA</option>
+                            </select>--> 
+                            <p:fieldset legend="Partidos">
+                                <p:selectOneRadio id="partidos" value="#{eleccionesProgramadasController.partido}" label="Partidos" style="width:100%">
+                                    <f:selectItems value="#{eleccionesProgramadasController.listaPartidos}" var="rolitem" itemLabel="#{rolitem.nombre}" itemValue="#{rolitem.idPartidos}"/>
+                                </p:selectOneRadio>
+                            </p:fieldset>
+                            <div class="seleccion" id="seleccion">
+                                <h1>ELECCION</h1>
+                            </div>
+                            <div class="section_VOTO_confirmacion" id="section_VOTO_confirmacion">
+                                <p:selectBooleanCheckbox value="#{eleccionesProgramadasController.seguro}" itemLabel="¿ESTAS SEGURO?"/>
+                            </div>
+                            <div class="boton">    
+                                <h:commandButton class="boton_style" type="submit" value="VOTAR" id="button_votar" action="#{eleccionesProgramadasController.votar()}"/>                        
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+            </h:body>
+        </html>
+    </ui:define>
+>>>>>>> Stashed changes
 </ui:composition>

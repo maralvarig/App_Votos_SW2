@@ -29,4 +29,16 @@ public class PartidosFacade extends AbstractFacade<Partidos> implements Partidos
         super(Partidos.class);
     }
     
+<<<<<<< Updated upstream
+=======
+    @Override
+    public List<Partidos> encontrarPartidos(Elecciones eleccion){
+        String consulta = "FROM Partidos p WHERE p.Elecciones_idElecciones=:param1";
+        Query query = em.createQuery(consulta);
+        query.setParameter("param1", eleccion);
+        
+        List<Partidos> listaPartidos = query.getResultList();
+        return listaPartidos;
+    }
+>>>>>>> Stashed changes
 }

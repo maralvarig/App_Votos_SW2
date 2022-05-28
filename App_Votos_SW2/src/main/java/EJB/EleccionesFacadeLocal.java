@@ -8,6 +8,7 @@ package EJB;
 import java.util.List;
 import javax.ejb.Local;
 import modelo.Elecciones;
+import modelo.Partidos;
 
 /**
  *
@@ -32,4 +33,11 @@ public interface EleccionesFacadeLocal {
 
     public Elecciones getElecction(int i);
     
+<<<<<<< Updated upstream
+=======
+    List<Elecciones> buscarElecciones(Elecciones eleccion);
+
+
+    
+>>>>>>> Stashed changes
 }
