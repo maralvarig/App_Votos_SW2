@@ -11,6 +11,7 @@ EJB\LocalidadFacade.class
 EJB\EleccionesFacade.class
 EJB\PersonasFacade.class
 com\mycompany\app_votos_sw2\resources\JavaEE8Resource.class
+controller\buscadorEleccionesController.class
 EJB\RepresentantesFacade.class
 com\mycompany\app_votos_sw2\JAXRSConfiguration.class
 controller\AdminController.class

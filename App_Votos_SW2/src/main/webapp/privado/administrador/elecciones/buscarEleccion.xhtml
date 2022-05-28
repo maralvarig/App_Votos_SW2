@@ -44,7 +44,7 @@
                     <h:outputText value="#{eleccion.localidad_idLocalidad.comunidad_Autonoma} #{eleccion.localidad_idLocalidad.provincia} #{eleccion.localidad_idLocalidad.municipio} #{eleccion.localidad_idLocalidad.codigo_Postal}"/>
                 </p:column>
                 <p:column headerText="Partidos e integrantes">
-                    <h:commandLink action="editarPublicacion" actionListener="#{buscadorEleccionesController.visualizarPartidos()}">
+                    <h:commandLink action="visualizarPartidos" actionListener="#{buscadorEleccionesController.visualizarPartidos(eleccion)}">
                         <h:graphicImage library="img" name="otros/partidos.png" width="30px" />
                     </h:commandLink>
                 </p:column>
