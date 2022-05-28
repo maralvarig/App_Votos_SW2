@@ -44,21 +44,19 @@
     <div class="section" id="elecciones">
         <div class="elecciones-container">
             <div class="elecciones-info-container">
-                <p:commandLink id="elec_programadas" action="#{indexController.irElecProgramadas()}">
-                    <h:outputText value="Elecciones programadas"/>
-                </p:commandLink>
+                <h:commandLink id="elec_programadas" action="#{indexController.irElecProgramadas()}" styleClass="a">
+                    <h2>Elecciones programadas</h2>
+                </h:commandLink>
                 <p:message for="elec_programadas" />
-                <h2>Elecciones programadas</h2>
-                // Proximamente
+                Entra aquí para acceder a los datos de las elecciones que están por celebrarse
             </div>
             <hr/>
             <div class="elecciones-info-container">
-                <p:commandLink id="elec_anteriores" action="#{indexController.irElecAnteriores()}">
-                    <h:outputText value="Elecciones anteriores"/>
-                </p:commandLink>
+                <h:commandLink id="elec_anteriores" action="#{indexController.irElecAnteriores()}" styleClass="a">
+                    <h2>Elecciones anteriores</h2>
+                </h:commandLink>
                 <p:message for="elec_anteriores" />
-                <h2>Elecciones anteriores</h2>
-                // Proximamente
+                Obten aquí los datos de elecciones celebradas en el pasado
             </div>
             <hr/>
         </div>

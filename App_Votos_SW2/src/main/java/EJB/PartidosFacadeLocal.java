@@ -11,7 +11,7 @@ import modelo.Partidos;
 
 /**
  *
- * @author maral
+ * @author dnarc
  */
 @Local
 public interface PartidosFacadeLocal {

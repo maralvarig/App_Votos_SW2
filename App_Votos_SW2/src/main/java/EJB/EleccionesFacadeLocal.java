@@ -32,4 +32,6 @@ public interface EleccionesFacadeLocal {
 
     public Elecciones getElecction(int i);
     
+    List<Elecciones> buscarElecciones(Elecciones eleccion);
+    
 }

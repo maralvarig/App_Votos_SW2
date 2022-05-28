@@ -43,5 +43,4 @@ public class AdministradorFacade extends AbstractFacade<Administrador> implement
 
     return (resultado.size() != 0);
     }
-    
 }

@@ -1,14 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import EJB.AdministradorFacadeLocal;
 import EJB.EleccionesFacadeLocal;
 import EJB.LocalidadFacadeLocal;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -24,6 +22,7 @@ import modelo.Localidad;
  *
  * @author dnarc
  */
+
 @Named
 @ViewScoped
 public class AdminController implements Serializable{
@@ -32,7 +31,9 @@ public class AdminController implements Serializable{
     private String password;
     private Elecciones eleccion;
     private Date fecha;
-    private List<Localidad> localidades;
+    private Localidad localidad;
+    private List<Localidad> listaLocalidades;
+    private ArrayList<String> municipios;
     
     @EJB
     private AdministradorFacadeLocal adminEJB;
@@ -43,8 +44,10 @@ public class AdminController implements Serializable{
     
     @PostConstruct
     public void init(){
+        localidad = new Localidad();
         eleccion = new Elecciones();
-        localidades = localidadEJB.obtenerLocalidades();
+        listaLocalidades = localidadEJB.findAll();
+        municipios = new ArrayList<String>();
     }
     //Metodo que lleva a la página del administrador
     public String administrar(){
@@ -66,23 +69,32 @@ public class AdminController implements Serializable{
     }
     //Lleva a la pagina de crearEleccion
     public String irCrearEleccion(){
-        return "/privado/administrador/crearEleccion.xhtml?faces-redirect=true";
+        return "/privado/administrador/elecciones/crearEleccion.xhtml?faces-redirect=true";
     }
     
     public String crearEleccion(){
-        eleccion.setFecha(fecha.toString());
+        double fechaE = (fecha.getYear()+1900)*10000+(fecha.getMonth()+1)*100+fecha.getDate();
+        double fechah;
+        fechah = (LocalDateTime.now().getYear())*10000+(LocalDateTime.now().getMonthValue())*100+LocalDateTime.now().getDayOfMonth();
+        if(Double.compare(fechah, fechaE)!=-1){
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+            FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"La fecha es anterior a la actual.", null));
+            return "/privado/administrador/crearEleccion.xhtml?faces-redirect=true";
+        }
+        eleccion.setFecha(fecha.getDay()+"/"+fecha.getMonth()+"/"+(fecha.getYear()+1900));
+        eleccion.setLocalidad_idLocalidad(localidad);
         try{
             eleccionEJB.create(eleccion);
         }catch(Exception e){
             System.out.println("Error al crear eleccion: "+e.getMessage());
         }
         FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
-        FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Eleccion Creada", null));
+        FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Eleccion Creada", null));
         return "/index.xhtml?faces-redirect=true";
     }
     
     public String buscarEleccion(){
-        return "/privado/administrador/buscarEleccion.xhtml?faces-redirect=true";
+        return "/privado/administrador/elecciones/buscarEleccion.xhtml?faces-redirect=true";
     }
     
     //Borra la sesion del administrador
@@ -100,6 +112,31 @@ public class AdminController implements Serializable{
                 System.out.println("Error verificarYMostrar: "+e);
             }
         }
+    }
+
+    public Localidad getLocalidad() {
+        return localidad;
+    }
+
+    public void setLocalidad(Localidad localidad) {
+        this.localidad = localidad;
+    }
+
+    public List<Localidad> getListaLocalidades() {
+        return listaLocalidades;
+    }
+
+    public void setListaLocalidades(List<Localidad> listaLocalidades) {
+        this.listaLocalidades = listaLocalidades;
+    }
+
+
+    public LocalidadFacadeLocal getLocalidadEJB() {
+        return localidadEJB;
+    }
+
+    public void setLocalidadEJB(LocalidadFacadeLocal localidadEJB) {
+        this.localidadEJB = localidadEJB;
     }
 
     

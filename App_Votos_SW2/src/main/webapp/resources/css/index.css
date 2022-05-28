@@ -27,20 +27,26 @@ nav a{
     text-decoration: none;
 }*/
 
-div.navbar {
+.navbar {
     background-color: #4B6587;
     padding: 20px;
     text-align: center;
-    position: sticky;
     top: 0;
     z-index: 2;
-    
 }
 
-div.navbar a{
+.navbar .a{
     color: #fff;
-    text-decoration: none;
     font-size: 50px;
+}
+
+.a {
+    text-decoration: none;
+    color: black;
+}
+
+#nav{
+    box-shadow: none;
 }
 
 /**
@@ -49,7 +55,7 @@ div.navbar a{
 *
 */
 
-div.header{
+.header{
     background-image: url('https://images.pexels.com/photos/1550337/pexels-photo-1550337.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
     height: 50vh;
     background-size: cover;
@@ -63,7 +69,7 @@ div.header{
     padding: 20px;
 }
 
-div.header::after{
+.header::after{
     content: '';
     background-color: #000;
     position: absolute;
@@ -74,7 +80,7 @@ div.header::after{
     opacity: 0.6;
 }
 
-div.header * {
+.header * {
     position: relative;
     z-index: 1;
 }
@@ -98,7 +104,6 @@ hr{
 .elecciones-container{
     display: grid;
     gap: 20px;
-    grid-template-columns: 1;
 }
 
 .elecciones-info-container{
@@ -106,7 +111,6 @@ hr{
     font-size: 30px;
     text-align: center;
     cursor: pointer;
-    
     /*border-bottom: 1px solid #000;*/
     /*box-shadow:  0.5px 0.5px 1.5px #999;*/
 }
@@ -117,7 +121,7 @@ hr{
 *
 */
 
-div.footer {
+.footer {
     background-color: #F0E5CF;
     text-align: center;
     align-items: center;

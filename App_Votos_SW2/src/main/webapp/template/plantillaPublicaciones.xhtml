@@ -10,18 +10,18 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         <h:outputStylesheet library="css" name="index.css" />
-   <h:form id="nav">
-    <div class="navbar">
-        <p:commandLink id="header" action="#{indexController.irInicio()}" style="margin-right:20px;">
-            <h:outputText value="VeeVOTE"/>
-        </p:commandLink>
-        <p:sticky target="nav"/>
-        <!--<p:commandButton id="botonInicio" value="Cerrar Sesion" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info" action="#{menuController.destruirSesion()}"/>-->
-    </div>
-    </h:form>
     </h:head>
 
-    <h:body>
+    <h:body>      
+        <h:form id="nav">
+            <div class="navbar" id="navbar">
+                <h:commandLink id="header" action="#{indexController.irInicio()}" styleClass="a">
+                    <h:outputText value="VeeVOTE"/>
+                </h:commandLink>
+                <!--<p:commandButton id="botonInicio" value="Cerrar Sesion" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info" action="#{menuController.destruirSesion()}"/>-->
+            </div>
+        </h:form>
+        <p:sticky target="nav"/>
         <div id="content" class="center_content">
             <ui:insert name="content">Content</ui:insert>
         </div>
@@ -29,39 +29,39 @@
         <div id="bottom">
             <ui:insert name="bottom">
                 <div class="footer">
-        <h2>Proyecto Ingenieria del Software II</h2>
-        <div class="footer-container">
+                    <h2>Proyecto Ingenieria del Software II</h2>
+                    <div class="footer-container">
 
-            <div class="footer-info-container">
-                <h3>Acerca de VeeVote</h3>
-                <p>VeeVote es un proyecto innovador creado para modernizar los procesos electorales, que se caracteriza
-                    por su fiabilidad, reduccion de tiempos de escrutinio y responsabilidad con el medio ambiente</p>
-            </div>
+                        <div class="footer-info-container">
+                            <h3>Acerca de VeeVote</h3>
+                            <p>VeeVote es un proyecto innovador creado para modernizar los procesos electorales, que se caracteriza
+                                por su fiabilidad, reduccion de tiempos de escrutinio y responsabilidad con el medio ambiente</p>
+                        </div>
 
-            <div class="footer-info-container">
-                <h3>Encuentra nuestro trabajo</h3>
-                <h:form>
-                <p><i class="fa fa-github" style="font-size:larger"></i> &nbsp;GitHub</p>
-                    <p:commandLink id="header" onclick="PF('dlg1').show()" style="margin-right:20px;">
-                       Acceso para organismos públicos
-                    </p:commandLink>
-                    <p:dialog header="Introduzca sus credenciales" widgetVar="dlg1" minHeight="40" width="350" showEffect="fade">
-                        Usuario<h:inputText value="#{adminController.user}" required="true" requiredMessage="Introduzca Usuario"/><br/>
-                        Contraseña<h:inputText value="#{adminController.password}" required="true" requiredMessage="Introduzca Contraseña"/><br/>
-                        <h:commandButton id="submitButton" value="Iniciar Sesion" action="#{adminController.administrar()}"/>
-                    </p:dialog>
-                </h:form>
-            </div>
+                        <div class="footer-info-container">
+                            <h3>Encuentra nuestro trabajo</h3>
+                            <h:form>
+                                <p><i class="fa fa-github" style="font-size:larger"></i> &nbsp;GitHub</p>
+                                <p:commandLink id="header" onclick="PF('dlg1').show()" styleClass="a">
+                                    <h:outputText value="Acceso para organismos públicos"/>
+                                </p:commandLink>
+                                <p:dialog header="Introduzca sus credenciales" widgetVar="dlg1" minHeight="40" width="350" showEffect="fade">
+                                    Usuario<h:inputText value="#{adminController.user}" required="true" requiredMessage="Introduzca Usuario"/><br/>
+                                    Contraseña<h:inputText value="#{adminController.password}" required="true" requiredMessage="Introduzca Contraseña"/><br/>
+                                    <p:commandButton id="submitButton" value="Iniciar Sesion" action="#{adminController.administrar()}"/>
+                                </p:dialog>
+                            </h:form>
+                        </div>
 
-            <div class="footer-info-container">
-                <h3>Contacto</h3>
-                <p><i class="fa fa-envelope"></i> &nbsp;Malvai00@estudiantes.unileon.es</p>
-                <p><i class="fa fa-envelope"></i> &nbsp;Dnarcr00@estudiantes.unileon.es</p>
-                <p><i class="fa fa-envelope"></i> &nbsp;Spereb05@estudiantes.unileon.es</p>
-            </div>
+                        <div class="footer-info-container">
+                            <h3>Contacto</h3>
+                            <p><i class="fa fa-envelope"></i> &nbsp;Malvai00@estudiantes.unileon.es</p>
+                            <p><i class="fa fa-envelope"></i> &nbsp;Dnarcr00@estudiantes.unileon.es</p>
+                            <p><i class="fa fa-envelope"></i> &nbsp;Spereb05@estudiantes.unileon.es</p>
+                        </div>
 
-        </div>
-    </div>
+                    </div>
+                </div>
             </ui:insert>
         </div>
 

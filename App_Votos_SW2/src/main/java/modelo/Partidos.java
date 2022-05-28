@@ -32,7 +32,7 @@ public class Partidos implements Serializable{
     @Column(name="Nombre")
     private String Nombre;
     
-    @JoinColumn(name="idElecciones")
+    @JoinColumn(name="Elecciones_idElecciones")
     @ManyToOne
     private Elecciones Elecciones_idElecciones; 
 

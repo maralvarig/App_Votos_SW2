@@ -12,7 +12,7 @@ import modelo.Partidos;
 
 /**
  *
- * @author maral
+ * @author dnarc
  */
 @Stateless
 public class PartidosFacade extends AbstractFacade<Partidos> implements PartidosFacadeLocal {

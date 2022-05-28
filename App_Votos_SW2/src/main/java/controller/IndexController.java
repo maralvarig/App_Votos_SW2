@@ -36,4 +36,5 @@ public class IndexController implements Serializable{
     public String irElecAnteriores(){
         return "/privado/altaCategoria.xhtml?faces-redirect=true";
     }
+    
 }
