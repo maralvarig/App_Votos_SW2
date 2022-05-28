@@ -51,6 +51,12 @@
                     </h:commandLink>
                 </p:column>
             </p:dataTable>
+                
+            <p:commandButton id="escrutinio" value="Generar Escrutinio" onclick="PF('dlg2').show()" action="#{buscadorEleccionesController.generarEscrutinio()}">
+                <p:dialog header="Introduzca sus credenciales" widgetVar="dlg2" minHeight="40" width="350" showEffect="fade">
+                     <p:inputText disabled="true" value="Escrutinio realizado" />
+                </p:dialog>
+            </p:commandButton>
             </h:panelGrid>
             </h:body>
         </h:form>

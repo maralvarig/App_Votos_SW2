@@ -51,6 +51,10 @@ public class buscadorEleccionesController implements Serializable{
         this.eleccion = eleccion;
         return "crearEleccion.xhtml?faces-redirect=true";
     }
+    
+    public void generarEscrutinio(){
+        
+    }
 
     public Elecciones getEleccion() {
         return eleccion;
