@@ -32,7 +32,7 @@ public class verEscrutinioController implements Serializable{
     @Inject
     private buscadorEleccionesController busEleCon;
     
-    private String resultado;
+    private String[] resultado;
     private List<Escrutinio> resultados;
     private Elecciones eleccion;        
     private List<Partidos> listaPartidos;
@@ -57,8 +57,16 @@ public class verEscrutinioController implements Serializable{
         partido = new Partidos();
         eleccion = busEleCon.getEleccion();
         resultados = escrutinioEJB.obtenerResultado(eleccion);
-        resultado = resultados.get(0).getResultados();
         listaPartidos = partidosEJB.encontrarPartidos(eleccion);
+                
+        for (int i = 0; i < listaPartidos.size(); i++) {
+            resultado = resultados.get(0).getResultados().split(";");
+        }
+        
+        System.out.println("PRINT");
+        for (int i = 0; i < resultado.length; i++) {
+            System.out.println(resultado[i]);
+        }
     }
 
     public buscadorEleccionesController getBusEleCon() {
@@ -141,11 +149,11 @@ public class verEscrutinioController implements Serializable{
         this.votoEJB = votoEJB;
     }
 
-    public String getResultado() {
+    public String[] getResultado() {
         return resultado;
     }
 
-    public void setResultado(String resultado) {
+    public void setResultado(String[] resultado) {
         this.resultado = resultado;
     }
     

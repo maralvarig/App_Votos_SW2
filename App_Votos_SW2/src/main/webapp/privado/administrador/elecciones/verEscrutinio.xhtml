@@ -25,20 +25,14 @@
             <h:body onload="#{adminController.verificarYMostrar()}}">
                 <h:commandButton id="botonInicio" value="Cerrar Sesion" styleClass="ui-button-info" action="#{adminController.destruirSesion()}"/>
                 <h:panelGrid id="grid">                
-                    <p:dataTable var="partido" value="#{verEscrutinioController.listaPartidos}" allowUnsorting="true" sortMode="single">
-                        <p:column sortBy="#{partido.nombre}" headerText="Partido">
-                            <h:outputText value="#{partido.nombre}"/>
-                        </p:column>
-                        <p:column headerText="Votos">
-                            <p:column sortBy="#{verEscrutinioController.resultado}" headerText="Votos">
-                                <h:outputText value="#{verEscrutinioController.resultado}"/>
-                            </p:column>
+                    <p:dataTable id="table" var="string" value="#{verEscrutinioController.resultado}">
+                        <p:column>
+                          <h:outputText value="#{string}"/>
                         </p:column>
                     </p:dataTable>
                 </h:panelGrid>
             </h:body>
         </h:form>
-
 </html>
  </ui:define>
 </ui:composition>

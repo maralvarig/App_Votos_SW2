@@ -106,8 +106,13 @@ public class buscadorEleccionesController implements Serializable{
             //Seteo el resultado con PARTIDO;VOTOS;PARTIDO;VOTOS;...
             String resultado ="";
             for (int i=0;i<stringPartidos.length; i++) {
-                resultado += stringPartidos[i][0]+";"+stringPartidos[i][1]+";";
+                if(stringPartidos[i][1] == null){
+                    resultado += stringPartidos[i][0]+" no tiene votos;";
+                }else{
+                    resultado += stringPartidos[i][0]+" tiene "+stringPartidos[i][1]+" votos;";
+                }
             }
+            resultado += "Total: "+listaVotos.size()+" votos;";
              
            try{
                escrutinio.setElecciones_idElecciones(this.eleccion);
