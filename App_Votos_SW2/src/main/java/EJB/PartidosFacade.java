@@ -41,4 +41,5 @@ public class PartidosFacade extends AbstractFacade<Partidos> implements Partidos
         List<Partidos> listaPartidos = query.getResultList();
         return listaPartidos;
     }
+    
 }

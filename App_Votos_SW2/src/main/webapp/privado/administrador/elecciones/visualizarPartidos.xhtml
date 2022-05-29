@@ -31,6 +31,11 @@
                             <h:graphicImage library="img" name="otros/partidos.png" width="30px" />
                         </h:commandLink>
                     </p:column>
+                    <p:column sortBy="#{partido.programaElectoral}" headerText="Programa electoral">
+                    <p:link id="mario" href="#{partido.programaElectoral}" styleClass="a" target="_blank">
+                        <h:outputText value="Programa #{partido.nombre}"/>
+                    </p:link>
+                    </p:column>
                 </p:dataTable>
             </h:panelGrid>
             <p:dataTable var="representante" value="#{visualizarPartidosController.listaRepresentantes}" allowUnsorting="true" sortMode="single">
