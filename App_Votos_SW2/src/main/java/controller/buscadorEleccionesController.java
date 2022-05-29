@@ -6,15 +6,20 @@
 package controller;
 
 import EJB.EleccionesFacadeLocal;
+import EJB.EscrutinioFacadeLocal;
 import EJB.PartidosFacadeLocal;
+import EJB.VotoFacadeLocal;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import modelo.Elecciones;
+import modelo.Escrutinio;
 import modelo.Partidos;
+import modelo.Voto;
 
 /**
  *
@@ -27,20 +32,29 @@ public class buscadorEleccionesController implements Serializable{
     private Elecciones eleccion;
     private List<Elecciones> listaElecciones;
     private List<Partidos> listaPartidos;
-    private Partidos partido;
+    
+    private Escrutinio escrutinio;
+    
+    private String stringPartidos[][];
+    
+    @EJB
+    private EleccionesFacadeLocal eleccionEJB;
     
     @EJB
     private PartidosFacadeLocal partidosEJB;
     
     @EJB
-    private EleccionesFacadeLocal eleccionEJB;
+    private EscrutinioFacadeLocal escrutinioEJB;
+    
+    @EJB
+    private VotoFacadeLocal votoEJB;
     
     
     
     @PostConstruct
     public void init(){
         eleccion = new Elecciones();
-        partido = new Partidos();
+        escrutinio = new Escrutinio();
     }
     
     public void buscarElecciones(){
@@ -52,8 +66,60 @@ public class buscadorEleccionesController implements Serializable{
         return "crearEleccion.xhtml?faces-redirect=true";
     }
     
-    public void generarEscrutinio(){
-        
+    public String generarEscrutinio(Elecciones eleccion){
+        this.eleccion = eleccion;  
+        listaPartidos = partidosEJB.encontrarPartidos(this.eleccion);
+        //Hay que calcular el Escrutinio
+        if(!escrutinioEJB.existeEscrutinio(this.eleccion)){
+            //Obtenemos los votos y partidos
+            int tam = listaPartidos.size();
+            stringPartidos = new String[tam][2];
+
+            for (int i=0;i<tam; i++) {
+                stringPartidos[i][0] = listaPartidos.get(i).getNombre();
+            }
+            List<Voto> listaVotos = new ArrayList();
+            try{
+                listaVotos = votoEJB.buscarVotos(this.eleccion);
+            }catch(Exception e){
+                System.out.println("Error al obtener los votos: "+e.getMessage());
+            }
+            
+            int valor;
+            
+            //Hacemos las cuentas
+            //Recorremos los votos y buscamos el partido
+            for (int i = 0; i < stringPartidos.length; i++) {
+                for (int j = 0; j < listaVotos.size(); j++) {
+                    if(stringPartidos[i][0].equals(listaVotos.get(j).getVoto())){
+                        if(stringPartidos[i][1] == null){
+                            stringPartidos[i][1] = "1";
+                        }else{
+                            valor = Integer.parseInt(stringPartidos[i][1]);
+                            valor++;
+                            stringPartidos[i][1] = String.valueOf(valor);
+                        }
+                    }
+                }
+            }
+            
+            //Seteo el resultado con PARTIDO;VOTOS;PARTIDO;VOTOS;...
+            String resultado ="";
+            for (int i=0;i<stringPartidos.length; i++) {
+                resultado += stringPartidos[i][0]+";"+stringPartidos[i][1]+";";
+            }
+             
+           try{
+               escrutinio.setElecciones_idElecciones(this.eleccion);
+               escrutinio.setElecciones_Localidad_idLocalidad(this.eleccion.getLocalidad_idLocalidad());
+               escrutinio.setResultados(resultado);
+               escrutinioEJB.create(escrutinio);
+           }catch(Exception e){
+               System.out.println("Error al insertar el escrutinio en BBDD: "+e.getMessage());
+           }
+         
+        }
+        return "verEscrutinio.xhtml?faces-redirect=true";
     }
 
     public Elecciones getEleccion() {
@@ -88,14 +154,6 @@ public class buscadorEleccionesController implements Serializable{
         this.listaPartidos = listaPartidos;
     }
 
-    public Partidos getPartido() {
-        return partido;
-    }
-
-    public void setPartido(Partidos partido) {
-        this.partido = partido;
-    }
-
     public PartidosFacadeLocal getPartidosEJB() {
         return partidosEJB;
     }
@@ -103,4 +161,37 @@ public class buscadorEleccionesController implements Serializable{
     public void setPartidosEJB(PartidosFacadeLocal partidosEJB) {
         this.partidosEJB = partidosEJB;
     }
+
+    public String[][] getStringPartidos() {
+        return stringPartidos;
+    }
+
+    public void setStringPartidos(String[][] stringPartidos) {
+        this.stringPartidos = stringPartidos;
+    }
+
+    public Escrutinio getEscrutinio() {
+        return escrutinio;
+    }
+
+    public void setEscrutinio(Escrutinio escrutinio) {
+        this.escrutinio = escrutinio;
+    }
+
+    public EscrutinioFacadeLocal getEscrutinioEJB() {
+        return escrutinioEJB;
+    }
+
+    public void setEscrutinioEJB(EscrutinioFacadeLocal escrutinioEJB) {
+        this.escrutinioEJB = escrutinioEJB;
+    }
+
+    public VotoFacadeLocal getVotoEJB() {
+        return votoEJB;
+    }
+
+    public void setVotoEJB(VotoFacadeLocal votoEJB) {
+        this.votoEJB = votoEJB;
+    }
+
 }

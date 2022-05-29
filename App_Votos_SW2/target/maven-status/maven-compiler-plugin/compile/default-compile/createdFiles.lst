@@ -1,3 +1,4 @@
+controller\verEscrutinioController.class
 modelo\Personas.class
 EJB\PartidosFacade.class
 EJB\AbstractFacade.class

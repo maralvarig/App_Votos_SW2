@@ -47,8 +47,8 @@
                                     <h:outputText value="Acceso para organismos públicos"/>
                                 </p:commandLink>
                                 <p:dialog header="Introduzca sus credenciales" widgetVar="dlg1" minHeight="40" width="350" showEffect="fade">
-                                    Usuario<h:inputText value="#{adminController.user}" required="true" requiredMessage="Introduzca Usuario"/><br/>
-                                    Contraseña<h:inputText value="#{adminController.password}" required="true" requiredMessage="Introduzca Contraseña"/><br/>
+                                    Usuario<br/><p:inputText value="#{adminController.user}" required="true" requiredMessage="Introduzca Usuario"/><br/>
+                                    Contraseña<p:password id="toggle" value="#{adminController.password}" toggleMask="true" redisplay="true" required="true" requiredMessage="Introduzca Contraseña"/>
                                     <p:commandButton id="submitButton" value="Iniciar Sesion" action="#{adminController.administrar()}"/>
                                 </p:dialog>
                             </h:form>
