@@ -5,14 +5,17 @@
  */
 package EJB;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import modelo.Elecciones;
 import modelo.Partidos;
 
 /**
  *
- * @author maral
+ * @author dnarc
  */
 @Stateless
 public class PartidosFacade extends AbstractFacade<Partidos> implements PartidosFacadeLocal {
@@ -29,8 +32,6 @@ public class PartidosFacade extends AbstractFacade<Partidos> implements Partidos
         super(Partidos.class);
     }
     
-<<<<<<< Updated upstream
-=======
     @Override
     public List<Partidos> encontrarPartidos(Elecciones eleccion){
         String consulta = "FROM Partidos p WHERE p.Elecciones_idElecciones=:param1";
@@ -40,5 +41,4 @@ public class PartidosFacade extends AbstractFacade<Partidos> implements Partidos
         List<Partidos> listaPartidos = query.getResultList();
         return listaPartidos;
     }
->>>>>>> Stashed changes
 }

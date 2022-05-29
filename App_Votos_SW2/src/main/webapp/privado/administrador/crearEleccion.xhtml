@@ -39,9 +39,9 @@
                         <h:outputScript library="js" name="spanishcalendar.js" />
                         <p:datePicker required="true" value="#{adminController.fecha}" id="date" showIcon="true" style="width:auto" locale="es" requiredMessage="Fecha obligatorio"/>
                         
-                       <p:selectOneMenu id="localidad" value="#{adminController.localidad.idLocalidad}" label="Localidades" filter="true" dynamic="true" style="width:100%">
-                           <f:selectItems value="#{adminController.listaLocalidades}" var="rolitem" itemLabel="#{rolitem.comunidad_Autonoma} #{rolitem.provincia} #{rolitem.municipio} #{rolitem.codigo_Postal}" itemValue="#{rolitem.idLocalidad}"/>
-                       </p:selectOneMenu>
+                        <p:selectOneMenu id="localidad" value="#{adminController.localidades}" label="Localidades" filter="true" dynamic="true" style="width:100%">
+                            <f:selectItems value="#{altaUsuarioController.listaRoles}" var="rolitem" itemLabel="#{rolitem.descripcion}" itemValue="#{rolitem.idRol}"/>
+                        </p:selectOneMenu>
                     </h:panelGrid>
                 </p:fieldset>
             </h:panelGrid>

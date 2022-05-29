@@ -48,11 +48,6 @@ public class AdminController implements Serializable{
         eleccion = new Elecciones();
         listaLocalidades = localidadEJB.findAll();
         municipios = new ArrayList<String>();
-        for(int i=0;i<listaLocalidades.size();i++){
-            System.out.print("==========================================================\n");
-            System.out.println(listaLocalidades.get(i).getMunicipio());
-            System.out.print("============================================================");
-        }
     }
     //Metodo que lleva a la página del administrador
     public String administrar(){
@@ -74,7 +69,7 @@ public class AdminController implements Serializable{
     }
     //Lleva a la pagina de crearEleccion
     public String irCrearEleccion(){
-        return "/privado/administrador/crearEleccion.xhtml?faces-redirect=true";
+        return "/privado/administrador/elecciones/crearEleccion.xhtml?faces-redirect=true";
     }
     
     public String crearEleccion(){
@@ -99,7 +94,7 @@ public class AdminController implements Serializable{
     }
     
     public String buscarEleccion(){
-        return "/privado/administrador/buscarEleccion.xhtml?faces-redirect=true";
+        return "/privado/administrador/elecciones/buscarEleccion.xhtml?faces-redirect=true";
     }
     
     //Borra la sesion del administrador

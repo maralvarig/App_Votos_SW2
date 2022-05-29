@@ -11,9 +11,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import modelo.Elecciones;
 import modelo.Localidad;
-import modelo.Partidos;
 
 /**
  *
@@ -43,5 +41,4 @@ public class LocalidadFacade extends AbstractFacade<Localidad> implements Locali
         List<Localidad> resultado = query.getResultList();
         return resultado;
     }
-    
 }

@@ -5,17 +5,13 @@
  */
 package EJB;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import modelo.Elecciones;
-<<<<<<< Updated upstream
-import modelo.Personas;
-=======
-import modelo.Partidos;
->>>>>>> Stashed changes
 
 /**
  *
@@ -46,8 +42,6 @@ public class EleccionesFacade extends AbstractFacade<Elecciones> implements Elec
         
         return resultado.get(0); 
     }
-<<<<<<< Updated upstream
-=======
     
     @Override
     public List<Elecciones> buscarElecciones(Elecciones eleccion){
@@ -58,6 +52,4 @@ public class EleccionesFacade extends AbstractFacade<Elecciones> implements Elec
         List<Elecciones> listaElecciones = query.getResultList();
         return listaElecciones;
     }
-
->>>>>>> Stashed changes
 }

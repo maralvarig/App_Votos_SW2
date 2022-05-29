@@ -7,9 +7,7 @@ package EJB;
 
 import java.util.List;
 import javax.ejb.Local;
-import modelo.Elecciones;
 import modelo.Localidad;
-import modelo.Partidos;
 
 /**
  *
