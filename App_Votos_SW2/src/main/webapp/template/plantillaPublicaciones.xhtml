@@ -41,14 +41,13 @@
                         <div class="footer-info-container">
                             <h3>Encuentra nuestro trabajo</h3>
                             <h:form>
-                                <i class="fa fa-github" style="font-size:larger"><p:commandLink value="GitHub" onclick="window.open('https://github.com/maralvarig/App_Votos_SW2');return false;" /></i>
-                                <br/>
+                                <p><i class="fa fa-github" style="font-size:larger"></i> &nbsp;GitHub</p>
                                 <p:commandLink id="header" onclick="PF('dlg1').show()" styleClass="a">
                                     <h:outputText value="Acceso para organismos públicos"/>
                                 </p:commandLink>
                                 <p:dialog header="Introduzca sus credenciales" widgetVar="dlg1" minHeight="40" width="350" showEffect="fade">
-                                    Usuario<br/><p:inputText value="#{adminController.user}" required="true" requiredMessage="Introduzca Usuario"/><br/>
-                                    Contraseña<p:password id="toggle" value="#{adminController.password}" toggleMask="true" redisplay="true" required="true" requiredMessage="Introduzca Contraseña"/>
+                                    Usuario<h:inputText value="#{adminController.user}" required="true" requiredMessage="Introduzca Usuario"/><br/>
+                                    Contraseña<h:inputText value="#{adminController.password}" required="true" requiredMessage="Introduzca Contraseña"/><br/>
                                     <p:commandButton id="submitButton" value="Iniciar Sesion" action="#{adminController.administrar()}"/>
                                 </p:dialog>
                             </h:form>
@@ -56,15 +55,9 @@
 
                         <div class="footer-info-container">
                             <h3>Contacto</h3>
-                            <p:link id="mario" href="mailto:malvai00@estudiantes.unileon.es" styleClass="a">
-                                <p><i class="fa fa-envelope"></i> &nbsp;malvai00@estudiantes.unileon.es</p>
-                            </p:link>
-                            <p:link id="diego" href="mailto:dnarcr00@estudiantes.unileon.es" styleClass="a">
-                                    <p><i class="fa fa-envelope"></i> &nbsp;dnarcr00@estudiantes.unileon.es</p>
-                            </p:link>
-                            <p:link id="sergio" href="mailto:spereb05@estudiantes.unileon.es" styleClass="a">
-                                    <p><i class="fa fa-envelope"></i> &nbsp;spereb05@estudiantes.unileon.es</p>
-                            </p:link>
+                            <p><i class="fa fa-envelope"></i> &nbsp;Malvai00@estudiantes.unileon.es</p>
+                            <p><i class="fa fa-envelope"></i> &nbsp;Dnarcr00@estudiantes.unileon.es</p>
+                            <p><i class="fa fa-envelope"></i> &nbsp;Spereb05@estudiantes.unileon.es</p>
                         </div>
 
                     </div>

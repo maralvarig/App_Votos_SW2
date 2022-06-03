@@ -22,8 +22,6 @@
             <p:messages id="messages">
                 <p:autoUpdate/>
             </p:messages>
-            <h:body onload="#{adminController.verificarYMostrar()}">
-            <h:commandButton id="botonInicio" value="Cerrar Sesion" styleClass="ui-button-info" action="#{adminController.destruirSesion()}"/>
             <h:panelGrid id="grid">
                 <p:outputLabel for="tipo" value="Tipo: "/>
                 <p:selectOneMenu id="tipo" value="#{buscadorEleccionesController.eleccion.tipo}">
@@ -46,16 +44,12 @@
                     <h:outputText value="#{eleccion.localidad_idLocalidad.comunidad_Autonoma} #{eleccion.localidad_idLocalidad.provincia} #{eleccion.localidad_idLocalidad.municipio} #{eleccion.localidad_idLocalidad.codigo_Postal}"/>
                 </p:column>
                 <p:column headerText="Partidos e integrantes">
-                    <h:commandLink action="visualizarPartidos" actionListener="#{buscadorEleccionesController.visualizarPartidos(eleccion)}">
+                    <h:commandLink action="editarPublicacion" actionListener="#{buscadorEleccionesController.visualizarPartidos()}">
                         <h:graphicImage library="img" name="otros/partidos.png" width="30px" />
                     </h:commandLink>
                 </p:column>
-                <p:column headerText="Generar escrutinio">
-                <p:commandButton id="escrutinio" value="Generar Escrutinio" action="#{buscadorEleccionesController.generarEscrutinio(eleccion)}"/>
-                </p:column>
             </p:dataTable>
             </h:panelGrid>
-            </h:body>
         </h:form>
 
 </html>

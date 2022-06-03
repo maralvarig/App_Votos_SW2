@@ -7,12 +7,11 @@ package EJB;
 
 import java.util.List;
 import javax.ejb.Local;
-import modelo.Partidos;
 import modelo.Representantes;
 
 /**
  *
- * @author dnarc
+ * @author maral
  */
 @Local
 public interface RepresentantesFacadeLocal {
@@ -31,5 +30,4 @@ public interface RepresentantesFacadeLocal {
 
     int count();
     
-    List<Representantes> encontrarRepresentantes(Partidos partido);
 }

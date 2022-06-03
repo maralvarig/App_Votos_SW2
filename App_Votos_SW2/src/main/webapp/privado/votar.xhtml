@@ -39,7 +39,7 @@
                                 <option value="usa">USA</option>
                             </select>--> 
                             <p:fieldset legend="Partidos">
-                                <p:selectOneRadio id="partidos" value="#{eleccionesProgramadasController.partido}" label="Partidos" style="width:100%">
+                                <p:selectOneRadio id="partidos" value="#{eleccionesProgramadasController.part.idPartidos}" label="Partidos" style="width:100%">
                                     <f:selectItems value="#{eleccionesProgramadasController.listaPartidos}" var="rolitem" itemLabel="#{rolitem.nombre}" itemValue="#{rolitem.idPartidos}"/>
                                 </p:selectOneRadio>
                             </p:fieldset>
