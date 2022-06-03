@@ -39,6 +39,7 @@ public class PartidosFacade extends AbstractFacade<Partidos> implements Partidos
         query.setParameter("param1", eleccion);
         
         List<Partidos> listaPartidos = query.getResultList();
+        
         return listaPartidos;
     }
 }

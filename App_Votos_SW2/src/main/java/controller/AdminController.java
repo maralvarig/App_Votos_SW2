@@ -76,7 +76,7 @@ public class AdminController implements Serializable{
         double fechaE = (fecha.getYear()+1900)*10000+(fecha.getMonth()+1)*100+fecha.getDate();
         double fechah;
         fechah = (LocalDateTime.now().getYear())*10000+(LocalDateTime.now().getMonthValue())*100+LocalDateTime.now().getDayOfMonth();
-        if(Double.compare(fechah, fechaE)!=-1){
+        if(Double.compare(fechah, fechaE)!=-1 || Double.compare(fechah, fechaE)==0){
             FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
             FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"La fecha es anterior a la actual.", null));
             return "/privado/administrador/crearEleccion.xhtml?faces-redirect=true";

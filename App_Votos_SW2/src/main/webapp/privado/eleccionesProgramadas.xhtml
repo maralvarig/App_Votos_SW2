@@ -5,102 +5,53 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
+
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:div="http://xmlns.jcp.org/jsf/html">
 
+
 <h:head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Elecciones programadas</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elecciones</title>
+  
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <!-- HOJA DE ESTILOS -->
     <h:outputStylesheet library="css" name="eleccionesProgramadas.css" />
+    
 </h:head>
+<h:form>
+            <p:messages id="messages">
+                <p:autoUpdate/>
+            </p:messages>
+            <h:body>
+            <h:panelGrid id="grid">
+                
+                <p:dataTable var="eleccion" value="#{eleccionesProgramadasController.listaElecciones}" allowUnsorting="true" sortMode="single">
+                <p:column sortBy="#{eleccion.fecha}" headerText="Fecha">
+                    <h:outputText value="#{eleccion.fecha}"/>
+                </p:column>
+                <p:column sortBy="#{eleccion.tipo}" headerText="Tipo" sortOrder="asc">
+                    <h:outputText value="#{eleccion.tipo}"/>
+                </p:column>
+                <p:column sortBy="#{eleccion.localidad_idLocalidad.comunidad_Autonoma} #{eleccion.localidad_idLocalidad.provincia} #{eleccion.localidad_idLocalidad.municipio} #{eleccion.localidad_idLocalidad.codigo_Postal}" headerText="Localidad">
+                    <h:outputText value="#{eleccion.localidad_idLocalidad.comunidad_Autonoma} #{eleccion.localidad_idLocalidad.provincia} #{eleccion.localidad_idLocalidad.municipio} #{eleccion.localidad_idLocalidad.codigo_Postal}"/>
+                </p:column>
+                <p:column headerText="Partidos e integrantes">
+                    <h:commandLink action="visualizarPartidosVotante" actionListener="#{eleccionesProgramadasController.visualizarPartidos(eleccion)}">
+                        <h:graphicImage library="img" name="otros/partidos.png" width="30px" />
+                    </h:commandLink>
+                </p:column>
+                <p:column headerText="Votar">
+                    <p:commandButton id="Votar" value="Votar" action="#{eleccionesProgramadasController.irVotar(eleccion)}" disabled="#{eleccionesProgramadasController.puedoVotar(eleccion)}"/>
+                </p:column>
+              </p:dataTable>
+            </h:panelGrid>
+            </h:body>
+        </h:form>
 
-<h:body >
-    <h:form>
-    <div class="section" id="eleccionesColeccion">
-        <div  class="colecciones" id="eleccionesColeccion2">
-            <div id="n1" class="coleccion" >
-                <div class="bandera">
-                    <h:graphicImage class="img" library="img" name="Comunidades_autonomas/castillalamancha.png"/>
-                </div>
-                <div class="descripcion">
-                    <h3>Elecciones generales de España noviembre 2022</h3>
-                    <p class="fecha">02/05/12</p>
-                    <div class="boton">
-                        <h:commandButton class="boton_style" value="PROGRAMAS ELECTORALES" action="#{eleccionesProgramadasController.visualizarListas()}"/>
-                        <h:commandButton class="boton_style" id="voto1" value="¡VOTA!" action="#{eleccionesProgramadasController.irVotar()}"/>
-                        <p:message for="voto1" />
-                    </div>
-                </div>
-            </div>
-
-            <div id="n2" class="coleccion">
-                <div class="bandera">
-                    <h:graphicImage class="img" library="img" name="Comunidades_autonomas/aragon.png"/>
-                </div>
-                <div class="descripcion">
-                    <h3>Elecciones a las Cortes de Castilla y León de 2022</h3>
-                    <p class="fecha">02/05/12</p>
-                    <div class="boton">
-                        <h:commandButton class="boton_style" value="PROGRAMAS ELECTORALES"/>
-                        <h:commandButton class="boton_style" value="¡VOTA!" disabled="disabled"/>
-                    </div>
-                </div>
-            </div>
-
-            <div id="n3" class="coleccion">
-                <div class="bandera">
-                    <h:graphicImage class="img" library="img" name="Comunidades_autonomas/paisvasco.png"/>
-                </div>
-                <div class="descripcion">
-                    <h3>Elecciones a la asambrea de Madrid 2023</h3>
-                    <p class="fecha">02/05/12</p>
-                    <div class="boton">
-                        <h:commandButton class="boton_style" value="PROGRAMAS ELECTORALES"/>
-                        <h:commandButton class="boton_style" value="¡VOTA!" disabled="disabled"/>
-                    </div>
-                </div>
-
-            </div>
-
-            <div id="n4" class="coleccion">
-                <div class="bandera">
-                    <h:graphicImage class="img" library="img" name="Comunidades_autonomas/madrid.png"/>
-                </div>
-                <div class="descripcion">
-                    <h3>Elecciones municipales de España de 2024</h3>
-                    <p class="fecha">02/05/12</p>
-                    <div class="boton">
-                        <h:commandButton class="boton_style" value="PROGRAMAS ELECTORALES"/>
-                        <h:commandButton class="boton_style" value="¡VOTA!" disabled="disabled"/>
-                    </div>
-                </div>
-            </div>
-
-            <div id="n5" class="coleccion">
-                <div class="bandera">
-                    <h:graphicImage class="img" library="img" name="Comunidades_autonomas/castillayleon.png"/>
-                </div>
-                <div class="descripcion">
-                    <h3>Elecciones al Parlamento Europeo de 2019</h3>
-                    <p class="fecha">02/05/12</p>
-                    <div class="boton">
-                        <h:commandButton class="boton_style" value="PROGRAMAS ELECTORALES"/>
-                        <h:commandButton class="boton_style" value="¡VOTA!" disabled="disabled"/>
-                    </div>
-                </div>
-            </div>
-            
-            
-        </div>
-    </div>
-  </h:form>
-</h:body>
 </html>
  </ui:define>
 </ui:composition>

@@ -44,6 +44,7 @@ public class visualizarPartidosController implements Serializable{
     public void init(){
         partido = new Partidos();
         eleccion = busEleCon.getEleccion();
+        
         listaPartidos = partidosEJB.encontrarPartidos(eleccion);
     }
     

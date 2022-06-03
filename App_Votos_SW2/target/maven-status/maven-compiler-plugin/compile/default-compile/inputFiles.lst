@@ -1,3 +1,4 @@
+C:\Users\maral\OneDrive\Documentos\GitHub\App_Votos_SW2\App_Votos_SW2\src\main\java\controller\votarControler.java
 C:\Users\maral\OneDrive\Documentos\GitHub\App_Votos_SW2\App_Votos_SW2\src\main\java\modelo\Voto.java
 C:\Users\maral\OneDrive\Documentos\GitHub\App_Votos_SW2\App_Votos_SW2\src\main\java\modelo\Administrador.java
 C:\Users\maral\OneDrive\Documentos\GitHub\App_Votos_SW2\App_Votos_SW2\src\main\java\EJB\EscrutinioFacade.java
@@ -18,6 +19,7 @@ C:\Users\maral\OneDrive\Documentos\GitHub\App_Votos_SW2\App_Votos_SW2\src\main\j
 C:\Users\maral\OneDrive\Documentos\GitHub\App_Votos_SW2\App_Votos_SW2\src\main\java\EJB\VotoFacadeLocal.java
 C:\Users\maral\OneDrive\Documentos\GitHub\App_Votos_SW2\App_Votos_SW2\src\main\java\EJB\PartidosFacadeLocal.java
 C:\Users\maral\OneDrive\Documentos\GitHub\App_Votos_SW2\App_Votos_SW2\src\main\java\com\mycompany\app_votos_sw2\JAXRSConfiguration.java
+C:\Users\maral\OneDrive\Documentos\GitHub\App_Votos_SW2\App_Votos_SW2\src\main\java\controller\visualizarPartidosVotantesController.java
 C:\Users\maral\OneDrive\Documentos\GitHub\App_Votos_SW2\App_Votos_SW2\src\main\java\controller\AdminController.java
 C:\Users\maral\OneDrive\Documentos\GitHub\App_Votos_SW2\App_Votos_SW2\src\main\java\controller\visualizarPartidosController.java
 C:\Users\maral\OneDrive\Documentos\GitHub\App_Votos_SW2\App_Votos_SW2\src\main\java\EJB\VotoFacade.java

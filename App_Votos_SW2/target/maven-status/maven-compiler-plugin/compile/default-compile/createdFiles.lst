@@ -7,6 +7,7 @@ modelo\Confirmacionvoto.class
 modelo\Localidad.class
 modelo\Voto.class
 modelo\Elecciones.class
+controller\votarControler.class
 EJB\LocalidadFacade.class
 EJB\EleccionesFacade.class
 EJB\PersonasFacade.class
@@ -28,6 +29,7 @@ EJB\AdministradorFacadeLocal.class
 EJB\PartidosFacadeLocal.class
 modelo\Administrador.class
 controller\IndexController.class
+controller\visualizarPartidosVotantesController.class
 modelo\Partidos.class
 controller\eleccionesProgramadasController.class
 controller\visualizarPartidosController.class
