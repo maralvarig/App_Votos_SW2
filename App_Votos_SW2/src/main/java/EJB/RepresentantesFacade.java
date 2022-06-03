@@ -15,7 +15,7 @@ import modelo.Representantes;
 
 /**
  *
- * @author maral
+ * @author dnarc
  */
 @Stateless
 public class RepresentantesFacade extends AbstractFacade<Representantes> implements RepresentantesFacadeLocal {
@@ -42,5 +42,4 @@ public class RepresentantesFacade extends AbstractFacade<Representantes> impleme
         List<Representantes> listaRepresentantes = query.getResultList();
         return listaRepresentantes;
     }
-    
 }

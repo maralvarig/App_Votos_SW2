@@ -12,7 +12,7 @@ import modelo.Representantes;
 
 /**
  *
- * @author maral
+ * @author dnarc
  */
 @Local
 public interface RepresentantesFacadeLocal {
@@ -32,5 +32,4 @@ public interface RepresentantesFacadeLocal {
     int count();
     
     List<Representantes> encontrarRepresentantes(Partidos partido);
-    
 }

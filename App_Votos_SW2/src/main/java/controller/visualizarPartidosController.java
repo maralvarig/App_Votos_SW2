@@ -49,7 +49,7 @@ public class visualizarPartidosController implements Serializable{
     
     public void cargarRepresentantes(Partidos partido){
         listaRepresentantes = representanteEJB.encontrarRepresentantes(partido);
-        System.out.println("TAM:"+listaRepresentantes.size());
+        System.out.println("TAMRepresentantes:"+listaRepresentantes.size());
     }
 
     public buscadorEleccionesController getBusEleCon() {

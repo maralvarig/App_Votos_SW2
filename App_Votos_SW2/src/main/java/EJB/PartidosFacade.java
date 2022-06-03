@@ -31,7 +31,7 @@ public class PartidosFacade extends AbstractFacade<Partidos> implements Partidos
     public PartidosFacade() {
         super(Partidos.class);
     }
-    
+        
     @Override
     public List<Partidos> encontrarPartidos(Elecciones eleccion){
         String consulta = "FROM Partidos p WHERE p.Elecciones_idElecciones=:param1";

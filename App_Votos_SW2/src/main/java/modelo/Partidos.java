@@ -6,7 +6,6 @@
 package modelo;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -35,6 +33,9 @@ public class Partidos implements Serializable{
     @JoinColumn(name="Elecciones_idElecciones")
     @ManyToOne
     private Elecciones Elecciones_idElecciones; 
+    
+    @Column(name="ProgramaElectoral")
+    private String ProgramaElectoral;
 
     public int getIdPartidos() {
         return idPartidos;
@@ -59,5 +60,14 @@ public class Partidos implements Serializable{
     public void setElecciones_idElecciones(Elecciones Elecciones_idElecciones) {
         this.Elecciones_idElecciones = Elecciones_idElecciones;
     }
+
+    public String getProgramaElectoral() {
+        return ProgramaElectoral;
+    }
+
+    public void setProgramaElectoral(String ProgramaElectoral) {
+        this.ProgramaElectoral = ProgramaElectoral;
+    }
+    
     
 }
