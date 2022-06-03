@@ -156,6 +156,4 @@ public class verEscrutinioController implements Serializable{
     public void setResultado(String[] resultado) {
         this.resultado = resultado;
     }
-    
-    
 }
