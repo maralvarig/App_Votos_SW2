@@ -7,6 +7,7 @@ package EJB;
 
 import java.util.List;
 import javax.ejb.Local;
+import modelo.Elecciones;
 import modelo.Partidos;
 
 /**
@@ -30,4 +31,5 @@ public interface PartidosFacadeLocal {
 
     int count();
     
+    List<Partidos> encontrarPartidos(Elecciones eleccion);
 }
