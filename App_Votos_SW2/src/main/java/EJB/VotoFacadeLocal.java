@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -7,6 +8,7 @@ package EJB;
 
 import java.util.List;
 import javax.ejb.Local;
+import modelo.Elecciones;
 import modelo.Voto;
 
 /**
@@ -30,4 +32,5 @@ public interface VotoFacadeLocal {
 
     int count();
     
+    List<Voto> buscarVotos(Elecciones eleccion);
 }
