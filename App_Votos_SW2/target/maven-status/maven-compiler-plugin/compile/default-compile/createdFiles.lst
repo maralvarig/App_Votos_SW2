@@ -4,6 +4,7 @@ EJB\AbstractFacade.class
 EJB\EleccionesFacadeLocal.class
 EJB\PersonasFacadeLocal.class
 modelo\Confirmacionvoto.class
+controller\eleccionesAnterioresController.class
 modelo\Localidad.class
 modelo\Voto.class
 modelo\Elecciones.class

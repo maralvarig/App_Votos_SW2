@@ -6,21 +6,18 @@
 package controller;
 
 import EJB.EleccionesFacadeLocal;
-import EJB.PartidosFacadeLocal;
 import EJB.PersonasFacadeLocal;
 import EJB.VotoFacadeLocal;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import modelo.Elecciones;
 import modelo.Partidos;
-import modelo.Personas;
 import modelo.Voto;
 
 
@@ -41,8 +38,6 @@ public class eleccionesProgramadasController implements Serializable{
     
     private boolean seguro;
     
-    private List<Partidos> listaPartidos;
-    
     private List<Elecciones> listaElecciones;
     
     private Elecciones eleccion;
@@ -58,9 +53,6 @@ public class eleccionesProgramadasController implements Serializable{
     @EJB
     private VotoFacadeLocal votoEJB;
     
-    @EJB
-    private PartidosFacadeLocal partidoEJB;
-    
     
     
 
@@ -69,11 +61,8 @@ public class eleccionesProgramadasController implements Serializable{
     public void init(){
         part = new Partidos();
         voto = new Voto();
-
         eleccion = new Elecciones();
-        //TO DO
-        listaElecciones = eleccionesEJB.findAll();
-        listaPartidos = partidoEJB.findAll();
+        listaElecciones = filtrarElecciones(eleccionesEJB.findAll());
         
     }
     
@@ -81,6 +70,33 @@ public class eleccionesProgramadasController implements Serializable{
     public String irVotar(Elecciones eleccion){
         this.eleccion=eleccion;
         return "votar.xhtml?faces-redirect=true";
+    }
+    
+    //Obtiene las elecciones programadas (fecha hoy o superior)
+    public List<Elecciones> filtrarElecciones(List<Elecciones> lista){
+        List<Elecciones> filtrada = new ArrayList();
+        for (int i = 0; i < lista.size(); i++) {
+            String[] fechaEleccion = lista.get(i).getFecha().split("/");
+            //YEAR
+            if(Integer.parseInt(fechaEleccion[2]) > LocalDateTime.now().getYear()){
+                filtrada.add(lista.get(i));
+            }else{
+                if(LocalDateTime.now().getYear() == Integer.parseInt(fechaEleccion[2])){
+                    //MONTH
+                    if(Integer.parseInt(fechaEleccion[1]) > LocalDateTime.now().getMonthValue()){
+                        filtrada.add(lista.get(i));
+                    }else{
+                       if(LocalDateTime.now().getMonthValue() == Integer.parseInt(fechaEleccion[1])){
+                           //DAY
+                           if(Integer.parseInt(fechaEleccion[0]) >= LocalDateTime.now().getDayOfMonth()){
+                               filtrada.add(lista.get(i));
+                           }
+                       }
+                    }
+                }
+            }
+        }
+        return filtrada;
     }
     
     public boolean puedoVotar(Elecciones eleccionTemp){
@@ -95,9 +111,8 @@ public class eleccionesProgramadasController implements Serializable{
         return false;
     }
         
-    public String visualizarPartidos(Elecciones eleccion) {
+    public void visualizarPartidos(Elecciones eleccion) {
         this.eleccion = eleccion;
-        return "votar.xhtml?faces-redirect=true";
     }
     
    
@@ -125,14 +140,6 @@ public class eleccionesProgramadasController implements Serializable{
         this.voto = voto;
     }
 
-    public List<Partidos> getListaPartidos() {
-        return listaPartidos;
-    }
-
-    public void setListaPartidos(List<Partidos> listaPartidos) {
-        this.listaPartidos = listaPartidos;
-    }
-
     public PersonasFacadeLocal getPersonaEJB() {
         return personaEJB;
     }
@@ -155,14 +162,6 @@ public class eleccionesProgramadasController implements Serializable{
 
     public void setVotoEJB(VotoFacadeLocal votoEJB) {
         this.votoEJB = votoEJB;
-    }
-
-    public PartidosFacadeLocal getPartidoEJB() {
-        return partidoEJB;
-    }
-
-    public void setPartidoEJB(PartidosFacadeLocal partidoEJB) {
-        this.partidoEJB = partidoEJB;
     }
 
     public boolean isSeguro() {
@@ -197,10 +196,4 @@ public class eleccionesProgramadasController implements Serializable{
     public void setEleccion(Elecciones eleccion) {
         this.eleccion = eleccion;
     }
-
-
-    
-    
-    
-
 }
