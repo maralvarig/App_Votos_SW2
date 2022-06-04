@@ -91,7 +91,7 @@ public class eleccionesAnterioresController implements Serializable{
     
     public String verEscrutinio(Elecciones eleccion){
         this.eleccion = eleccion;
-        return "verEscrutinio.xhtml?faces-redirect=true";
+        return "escrutinioVotante.xhtml?faces-redirect=true";
     }
     
     public boolean existeEscrutinio(Elecciones eleccion){

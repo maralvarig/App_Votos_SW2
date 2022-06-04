@@ -62,9 +62,8 @@ public class buscadorEleccionesController implements Serializable{
         listaElecciones = eleccionEJB.buscarElecciones(eleccion);
     }
     
-    public String visualizarPartidos(Elecciones eleccion){
+    public void visualizarPartidos(Elecciones eleccion){
         this.eleccion = eleccion;
-        return "crearEleccion.xhtml?faces-redirect=true";
     }
     
       public String generarEscrutinio(Elecciones eleccion){
@@ -87,43 +86,46 @@ public class buscadorEleccionesController implements Serializable{
             }
             
             int valor;
-            
-            //Hacemos las cuentas
-            //Recorremos los votos y buscamos el partido
-            for (int i = 0; i < stringPartidos.length; i++) {
-                for (int j = 0; j < listaVotos.size(); j++) {
-                    if(stringPartidos[i][0].equals(listaVotos.get(j).getVoto())){
-                        if(stringPartidos[i][1] == null){
-                            stringPartidos[i][1] = "1";
-                        }else{
-                            valor = Integer.parseInt(stringPartidos[i][1]);
-                            valor++;
-                            stringPartidos[i][1] = String.valueOf(valor);
+            String resultado ="";
+            //Nadie ha votado
+            if(listaVotos.isEmpty()){
+                resultado = "Total: 0 votos;";
+            }else{
+                //Hacemos las cuentas
+                //Recorremos los votos y buscamos el partido
+                for (int i = 0; i < stringPartidos.length; i++) {
+                    for (int j = 0; j < listaVotos.size(); j++) {
+                        if(stringPartidos[i][0].equals(listaVotos.get(j).getVoto())){
+                            if(stringPartidos[i][1] == null){
+                                stringPartidos[i][1] = "1";
+                            }else{
+                                valor = Integer.parseInt(stringPartidos[i][1]);
+                                valor++;
+                                stringPartidos[i][1] = String.valueOf(valor);
+                            }
                         }
                     }
                 }
-            }
-            
-            //Seteo el resultado con PARTIDO;VOTOS;PARTIDO;VOTOS;...
-            String resultado ="";
-            for (int i=0;i<stringPartidos.length; i++) {
-                if(stringPartidos[i][1] == null){
-                    resultado += stringPartidos[i][0]+" no tiene votos;";
-                }else{
-                    resultado += stringPartidos[i][0]+" tiene "+stringPartidos[i][1]+" votos;";
+
+                //Seteo el resultado con PARTIDO;VOTOS;PARTIDO;VOTOS;...
+                resultado ="";
+                for (int i=0;i<stringPartidos.length; i++) {
+                    if(stringPartidos[i][1] == null){
+                        resultado += stringPartidos[i][0]+" no tiene votos;";
+                    }else{
+                        resultado += stringPartidos[i][0]+" tiene "+stringPartidos[i][1]+" votos;";
+                    }
                 }
+                resultado += "Total: "+listaVotos.size()+" votos;";
             }
-            resultado += "Total: "+listaVotos.size()+" votos;";
-             
-           try{
-               escrutinio.setElecciones_idElecciones(this.eleccion);
-               escrutinio.setElecciones_Localidad_idLocalidad(this.eleccion.getLocalidad_idLocalidad());
-               escrutinio.setResultados(resultado);
-               escrutinioEJB.create(escrutinio);
-           }catch(Exception e){
-               System.out.println("Error al insertar el escrutinio en BBDD: "+e.getMessage());
-           }
-         
+               try{
+                   escrutinio.setElecciones_idElecciones(this.eleccion);
+                   escrutinio.setElecciones_Localidad_idLocalidad(this.eleccion.getLocalidad_idLocalidad());
+                   escrutinio.setResultados(resultado);
+                   escrutinioEJB.create(escrutinio);
+               }catch(Exception e){
+                   System.out.println("Error al insertar el escrutinio en BBDD: "+e.getMessage());
+               }
         }
         return "verEscrutinio.xhtml?faces-redirect=true";
     }

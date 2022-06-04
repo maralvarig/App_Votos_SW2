@@ -29,12 +29,12 @@ public class IndexController implements Serializable{
     
     //Metodo que lleva a la pagina de elecciones programadas
     public String irElecProgramadas(){
-        return "/privado/eleccionesProgramadas.xhtml?faces-redirect=true";
+        return "/privado/votante/eleccionesProgramadas.xhtml?faces-redirect=true";
     }
     
     //Metodo que lleva a la pagina de elecciones anteriores
     public String irElecAnteriores(){
-        return "/privado/eleccionesAnteriores.xhtml?faces-redirect=true";
+        return "/privado/votante/eleccionesAnteriores.xhtml?faces-redirect=true";
     }
     
 }

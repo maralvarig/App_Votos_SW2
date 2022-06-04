@@ -5,7 +5,6 @@ import EJB.EleccionesFacadeLocal;
 import EJB.LocalidadFacadeLocal;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -79,7 +78,7 @@ public class AdminController implements Serializable{
         if(Double.compare(fechah, fechaE)!=-1 || Double.compare(fechah, fechaE)==0){
             FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
             FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"La fecha es anterior a la actual.", null));
-            return "/privado/administrador/crearEleccion.xhtml?faces-redirect=true";
+            return "crearEleccion.xhtml?faces-redirect=true";
         }
         eleccion.setFecha(fecha.getDay()+"/"+fecha.getMonth()+"/"+(fecha.getYear()+1900));
         eleccion.setLocalidad_idLocalidad(localidad);
