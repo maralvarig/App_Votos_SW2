@@ -58,14 +58,15 @@ public class verEscrutinioController implements Serializable{
         eleccion = busEleCon.getEleccion();
         resultados = escrutinioEJB.obtenerResultado(eleccion);
         listaPartidos = partidosEJB.encontrarPartidos(eleccion);
-                
-        for (int i = 0; i < listaPartidos.size(); i++) {
-            resultado = resultados.get(0).getResultados().split(";");
-        }
-        
-        System.out.println("PRINT");
-        for (int i = 0; i < resultado.length; i++) {
-            System.out.println(resultado[i]);
+        //NO hay votos
+        if(resultados.get(0).getResultados().equals("Total: 0 votos;")){
+             resultado = new String[1];
+            resultado[0] = "Total: 0 votos;";
+        //Hay votos
+        }else{
+            for (int i = 0; i < listaPartidos.size(); i++) {
+                resultado = resultados.get(0).getResultados().split(";");
+            }
         }
     }
 

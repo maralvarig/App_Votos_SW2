@@ -56,6 +56,7 @@ public class buscadorEleccionesController implements Serializable{
     public void init(){
         eleccion = new Elecciones();
         partido = new Partidos();
+        escrutinio = new Escrutinio();
     }
     
     public void buscarElecciones(){
@@ -67,7 +68,7 @@ public class buscadorEleccionesController implements Serializable{
     }
     
       public String generarEscrutinio(Elecciones eleccion){
-        this.eleccion = eleccion;  
+        this.eleccion = eleccion; 
         listaPartidos = partidosEJB.encontrarPartidos(this.eleccion);
         //Hay que calcular el Escrutinio
         if(!escrutinioEJB.existeEscrutinio(this.eleccion)){
