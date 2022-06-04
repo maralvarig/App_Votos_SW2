@@ -135,7 +135,23 @@ public class buscadorEleccionesController implements Serializable{
         return "verEscrutinio.xhtml?faces-redirect=true";
     }
 
-
+    public String localidad(Elecciones eleccion){
+        eleccion.getLocalidad_idLocalidad();
+        if(eleccion.getTipo().equals("Generales")){            
+                return eleccion.getLocalidad_idLocalidad().getPais();
+        }
+        if(eleccion.getTipo().equals("Autonomicas")){           
+                return eleccion.getLocalidad_idLocalidad().getComunidad_Autonoma();
+        }
+        if(eleccion.getTipo().equals("Provinciales")){
+                return eleccion.getLocalidad_idLocalidad().getMunicipio();
+        }
+        if(eleccion.getTipo().equals("Municipales")){
+                return eleccion.getLocalidad_idLocalidad().getProvincia();
+        }
+        return "DESCONOCIDO";
+    }
+    
     public Elecciones getEleccion() {
         return eleccion;
     }

@@ -36,8 +36,8 @@
                 <p:column sortBy="#{eleccion.tipo}" headerText="Tipo" sortOrder="asc">
                     <h:outputText value="#{eleccion.tipo}"/>
                 </p:column>
-                <p:column sortBy="#{eleccion.localidad_idLocalidad.comunidad_Autonoma} #{eleccion.localidad_idLocalidad.provincia} #{eleccion.localidad_idLocalidad.municipio} #{eleccion.localidad_idLocalidad.codigo_Postal}" headerText="Localidad">
-                    <h:outputText value="#{eleccion.localidad_idLocalidad.comunidad_Autonoma} #{eleccion.localidad_idLocalidad.provincia} #{eleccion.localidad_idLocalidad.municipio} #{eleccion.localidad_idLocalidad.codigo_Postal}"/>
+                <p:column sortBy="#{buscadorEleccionesController.localidad(eleccion)}" headerText="Localidad">
+                    <h:outputText value="#{buscadorEleccionesController.localidad(eleccion)}"/>
                 </p:column>
                 <p:column headerText="Partidos e integrantes">
                     <h:commandLink action="visualizarPartidosVotante" actionListener="#{eleccionesProgramadasController.visualizarPartidos(eleccion)}">

@@ -99,6 +99,23 @@ public class eleccionesProgramadasController implements Serializable{
         return filtrada;
     }
     
+    public String localidad(){
+        eleccion.getLocalidad_idLocalidad();
+        if(eleccion.getTipo().equals("Generales")){            
+                return eleccion.getLocalidad_idLocalidad().getPais();
+        }
+        if(eleccion.getTipo().equals("Autonomicas")){           
+                return eleccion.getLocalidad_idLocalidad().getComunidad_Autonoma();
+        }
+        if(eleccion.getTipo().equals("Provinciales")){
+                return eleccion.getLocalidad_idLocalidad().getMunicipio();
+        }
+        if(eleccion.getTipo().equals("Municipales")){
+                return eleccion.getLocalidad_idLocalidad().getProvincia();
+        }
+        return "DESCONOCIDO";
+    }
+    
     public boolean puedoVotar(Elecciones eleccionTemp){
         String[] fechaEleccion = eleccionTemp.getFecha().split("/");
         if(LocalDateTime.now().getYear()!=Integer.parseInt(fechaEleccion[2]))

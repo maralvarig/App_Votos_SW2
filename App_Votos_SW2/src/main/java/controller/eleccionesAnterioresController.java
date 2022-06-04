@@ -84,7 +84,22 @@ public class eleccionesAnterioresController implements Serializable{
         }
         return filtrada;
     }
-        
+    public String localidad(Elecciones eleccion){
+        //eleccion.getLocalidad_idLocalidad();
+        if(eleccion.getTipo().equals("Generales")){            
+                return eleccion.getLocalidad_idLocalidad().getPais();
+        }
+        if(eleccion.getTipo().equals("Autonomicas")){           
+                return eleccion.getLocalidad_idLocalidad().getComunidad_Autonoma();
+        }
+        if(eleccion.getTipo().equals("Provinciales")){
+                return eleccion.getLocalidad_idLocalidad().getMunicipio();
+        }
+        if(eleccion.getTipo().equals("Municipales")){
+                return eleccion.getLocalidad_idLocalidad().getProvincia();
+        }
+        return "DESCONOCIDO";
+    } 
     public void visualizarPartidos(Elecciones eleccion) {
         this.eleccion = eleccion;
     }
