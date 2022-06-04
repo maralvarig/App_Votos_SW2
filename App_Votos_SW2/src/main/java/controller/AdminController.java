@@ -102,15 +102,33 @@ public class AdminController implements Serializable{
     }
     
     public String crearPartido(){
-        partido.setElecciones_idElecciones(eleccion);
-        try{
-            partidoEJB.create(partido);
-        }catch(Exception e){
-            System.out.println("Error al crear el partido"+ e.getMessage());
-        }
-        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
-        FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Partido Creado", null));
+        //El nombre del partido ya existe
+        if(existePartido(eleccion)){
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+            FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"El partido ya existe", null));
+             return "/privado/administrador/elecciones/crearPartido.xhtml?faces-redirect=true";
+        }else{
+            partido.setElecciones_idElecciones(eleccion);
+            try{
+                partidoEJB.create(partido);
+            }catch(Exception e){
+                System.out.println("Error al crear el partido"+ e.getMessage());
+            }
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+            FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Partido Creado", null));
+        }           
         return "/index.xhtml?faces-redirect=true";
+    }
+    
+    //Comprueba si el partido ya existe para la eleccion
+    public boolean existePartido(Elecciones eleccion){
+        List<Partidos> lista = partidoEJB.encontrarPartidos(eleccion);
+        for (int i = 0; i < lista.size(); i++) {
+            if(lista.get(i).getNombre().equals(partido.getNombre())){
+                return true;
+            }
+        }
+        return false;
     }
     
     //Obtiene las elecciones programadas (fecha anterior a hoy)
