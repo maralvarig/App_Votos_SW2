@@ -3,6 +3,7 @@ package controller;
 import EJB.AdministradorFacadeLocal;
 import EJB.EleccionesFacadeLocal;
 import EJB.LocalidadFacadeLocal;
+import EJB.PartidosFacadeLocal;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import modelo.Elecciones;
 import modelo.Localidad;
+import modelo.Partidos;
 
 /**
  *
@@ -32,7 +34,9 @@ public class AdminController implements Serializable{
     private Date fecha;
     private Localidad localidad;
     private List<Localidad> listaLocalidades;
+    private List<Elecciones> listaElecciones;
     private ArrayList<String> municipios;
+    private Partidos partido;
     
     @EJB
     private AdministradorFacadeLocal adminEJB;
@@ -40,12 +44,16 @@ public class AdminController implements Serializable{
     private EleccionesFacadeLocal eleccionEJB;
     @EJB
     private LocalidadFacadeLocal localidadEJB;
+    @EJB
+    private PartidosFacadeLocal partidoEJB;
     
     @PostConstruct
     public void init(){
         localidad = new Localidad();
         eleccion = new Elecciones();
         listaLocalidades = localidadEJB.findAll();
+        partido = new Partidos();
+        listaElecciones = filtrarEleccionesPasadas(eleccionEJB.findAll());
         municipios = new ArrayList<String>();
     }
     //Metodo que lleva a la página del administrador
@@ -69,6 +77,67 @@ public class AdminController implements Serializable{
     //Lleva a la pagina de crearEleccion
     public String irCrearEleccion(){
         return "/privado/administrador/elecciones/crearEleccion.xhtml?faces-redirect=true";
+    }
+    
+    //Lleva a la pagina de crearEleccion
+    public String irCrearPartido(){
+        return "/privado/administrador/elecciones/crearPartido.xhtml?faces-redirect=true";
+    }
+    
+    public String localidad(Elecciones eleccion){
+        eleccion.getLocalidad_idLocalidad();
+        if(eleccion.getTipo().equals("Generales")){            
+                return eleccion.getLocalidad_idLocalidad().getPais();
+        }
+        if(eleccion.getTipo().equals("Autonomicas")){           
+                return eleccion.getLocalidad_idLocalidad().getComunidad_Autonoma();
+        }
+        if(eleccion.getTipo().equals("Provinciales")){
+                return eleccion.getLocalidad_idLocalidad().getMunicipio();
+        }
+        if(eleccion.getTipo().equals("Municipales")){
+                return eleccion.getLocalidad_idLocalidad().getProvincia();
+        }
+        return "DESCONOCIDO";
+    }
+    
+    public String crearPartido(){
+        partido.setElecciones_idElecciones(eleccion);
+        try{
+            partidoEJB.create(partido);
+        }catch(Exception e){
+            System.out.println("Error al crear el partido"+ e.getMessage());
+        }
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+        FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Partido Creado", null));
+        return "/index.xhtml?faces-redirect=true";
+    }
+    
+    //Obtiene las elecciones programadas (fecha anterior a hoy)
+    public List<Elecciones> filtrarEleccionesPasadas(List<Elecciones> lista){
+        List<Elecciones> filtrada = new ArrayList();
+        for (int i = 0; i < lista.size(); i++) {
+            String[] fechaEleccion = lista.get(i).getFecha().split("/");
+            //YEAR
+            if(Integer.parseInt(fechaEleccion[2]) < LocalDateTime.now().getYear()){
+                filtrada.add(lista.get(i));
+            }else{
+                if(LocalDateTime.now().getYear() == Integer.parseInt(fechaEleccion[2])){
+                    //MONTH
+                    if(Integer.parseInt(fechaEleccion[1]) < LocalDateTime.now().getMonthValue()){
+                        filtrada.add(lista.get(i));
+                    }else{
+                       if(LocalDateTime.now().getMonthValue() == Integer.parseInt(fechaEleccion[1])){
+                           //DAY
+                           if(Integer.parseInt(fechaEleccion[0]) < LocalDateTime.now().getDayOfMonth()){
+                               filtrada.add(lista.get(i));
+                           }
+                       }
+                    }
+                }
+            }
+        }
+        return filtrada;
     }
     
     public String crearEleccion(){
@@ -186,5 +255,36 @@ public class AdminController implements Serializable{
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }   
-    
+
+    public ArrayList<String> getMunicipios() {
+        return municipios;
+    }
+
+    public void setMunicipios(ArrayList<String> municipios) {
+        this.municipios = municipios;
+    }
+
+    public Partidos getPartido() {
+        return partido;
+    }
+
+    public void setPartido(Partidos partido) {
+        this.partido = partido;
+    }
+
+    public PartidosFacadeLocal getPartidoEJB() {
+        return partidoEJB;
+    }
+
+    public void setPartidoEJB(PartidosFacadeLocal partidoEJB) {
+        this.partidoEJB = partidoEJB;
+    }
+
+    public List<Elecciones> getListaElecciones() {
+        return listaElecciones;
+    }
+
+    public void setListaElecciones(List<Elecciones> listaElecciones) {
+        this.listaElecciones = listaElecciones;
+    }
 }
