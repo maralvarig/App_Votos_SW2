@@ -124,12 +124,17 @@ public class votarControler implements Serializable{
     }
     
     public boolean haVotado(Personas p){
-        for(int i=0;i<p.getElecciones().size();i++){
-            if(p.getElecciones().get(i).getIdElecciones()==eleccion.getIdElecciones())
-                return true;
+        boolean votado = false;
+        int i = 0;
+        while(i < p.getElecciones().size() && votado == false){
+          if(p.getElecciones().get(i).getIdElecciones()==eleccion.getIdElecciones()){
+            votado = true;
+          }
+          i++;
         }
-        return false;        
+        return votado;        
     }
+
     public boolean puedeVotar(Personas p){
         if(eleccion.getTipo().equals("Generales")){
             if(eleccion.getLocalidad_idLocalidad().getPais().equals(p.getIdLocalidad().getPais()))
@@ -147,7 +152,7 @@ public class votarControler implements Serializable{
             if(eleccion.getLocalidad_idLocalidad().getMunicipio().equals(p.getIdLocalidad().getMunicipio()))
                 return false;
         }
-        
+
         return true;        
     }
     

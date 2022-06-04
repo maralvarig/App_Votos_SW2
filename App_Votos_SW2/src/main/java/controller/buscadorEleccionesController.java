@@ -71,6 +71,7 @@ public class buscadorEleccionesController implements Serializable{
         this.eleccion = eleccion; 
         listaPartidos = partidosEJB.encontrarPartidos(this.eleccion);
         //Hay que calcular el Escrutinio
+        
         if(!escrutinioEJB.existeEscrutinio(this.eleccion)){
             //Obtenemos los votos y partidos
             int tam = listaPartidos.size();
@@ -112,12 +113,14 @@ public class buscadorEleccionesController implements Serializable{
                 resultado ="";
                 for (int i=0;i<stringPartidos.length; i++) {
                     if(stringPartidos[i][1] == null){
-                        resultado += stringPartidos[i][0]+" no tiene votos;";
+                        resultado += stringPartidos[i][0]+":0;";
                     }else{
-                        resultado += stringPartidos[i][0]+" tiene "+stringPartidos[i][1]+" votos;";
+                        resultado += stringPartidos[i][0]+":"+stringPartidos[i][1]+";";
                     }
                 }
-                resultado += "Total: "+listaVotos.size()+" votos;";
+                resultado += "Total:"+listaVotos.size();
+                
+                
             }
                try{
                    escrutinio.setElecciones_idElecciones(this.eleccion);
@@ -128,6 +131,7 @@ public class buscadorEleccionesController implements Serializable{
                    System.out.println("Error al insertar el escrutinio en BBDD: "+e.getMessage());
                }
         }
+        
         return "verEscrutinio.xhtml?faces-redirect=true";
     }
 

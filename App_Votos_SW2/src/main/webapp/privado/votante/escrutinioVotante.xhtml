@@ -1,37 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<ui:composition template="/template//plantillaVeeVote.xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
- <ui:define name="content">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Escrutinio Votante</title>
-  
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<ui:composition template="/template/plantillaVeeVote.xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:define name="content">
+        <html xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://xmlns.jcp.org/jsf/html"
+              xmlns:p="http://primefaces.org/ui"
+              xmlns:f="http://xmlns.jcp.org/jsf/core"
+              xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
-    <!-- HOJA DE ESTILOS -->
-    <h:outputStylesheet library="css" name="eleccionesProgramadas.css" />
-    
-</h:head>
-    <h:form>
-        <p:messages id="messages">
-            <p:autoUpdate/>
-        </p:messages>
-        <h:body>
-            <h:panelGrid id="grid">                
-                <p:dataTable id="table" var="string" value="#{verEscrutinioVotanteController.resultado}">
-                    <p:column>
-                      <h:outputText value="#{string}"/>
-                    </p:column>
-                </p:dataTable>
-            </h:panelGrid>
-        </h:body>
-    </h:form>
-</html>
- </ui:define>
+            <h:head>
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <title>Elecciones generales de España noviembre 2022</title>
+
+                <!-- Font Awesome -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+                <!-- HOJA DE ESTILOS -->
+                <h:outputStylesheet library="css" name="escrutinio.css" />
+                
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+            </h:head>
+
+            <h:body>
+                <h:form id="Escrutinio">
+                     <div class="cabecera">
+        
+                        <div class="informacion" id="info">
+                            <p>INFORMACIÓN</p>
+                            <hr/>
+                            <div class="informacion-datos">
+                                <h4>ESCRUTADO: 100%</h4>
+                                <h4>PARTICIPACION: 58%</h4>
+                                <h4>FECHA: #{verEscrutinioVotanteController.fecha}</h4>
+                                <h4>TIPO: #{verEscrutinioVotanteController.tipoEleccion}</h4>
+                                <h4>LUGAR: #{verEscrutinioVotanteController.localidad()}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="elementos">
+
+                        <div class="seccion" id="semicirculo">
+                            <p>GRAFICO</p>
+                            <hr/>
+                            <canvas id="myChart" class="seccion-semicirculo"/>
+
+                            <script>
+                                var xValues = #{verEscrutinioVotanteController.partidos()} 
+                                var yValues = #{verEscrutinioVotanteController.votos()}
+                                var barColors = ["#b91d47", "#00aba9", "#2b5797", "#e8c3b9", "#1e7145"]; 
+                                new Chart('myChart', {
+                                    type: "doughnut", 
+                                    data: { 
+                                        labels: xValues, 
+                                        datasets: [{ 
+                                            backgroundColor: barColors, 
+                                            data: yValues 
+                                        }] 
+                                    },
+                                    options: {
+                                        rotation: 1 * Math.PI, 
+                                        circumference: 1 * Math.PI
+                                    }
+                                }); 
+                            </script>
+                            <h2>Total 100 escaños</h2>
+                        </div>
+
+                        <div class="seccion" id="tabla">
+                            <p>TABLA DE VOTOS</p>
+                            <hr/>
+                            <table class="seccion-tabla">
+                                <tr>
+                                    <th>Votos</th>
+                                    <th>Escaños</th>
+                                    <th>Partido</th>
+                                </tr>
+                                <h:outputText escape="false" value="#{verEscrutinioVotanteController.tabla()}"/>
+                            </table>
+                        </div>
+
+
+                    </div>
+
+                    <div class="pactometro">
+                        <div class="seccion" id="barra">
+                            <p>PACTOMETRO</p>
+                            <hr/>
+                            <canvas id="myChart-barra" height="120" width="700"/>
+                            <script>
+                                var xValues = #{verEscrutinioVotanteController.partidos()}
+                                var yValues = #{verEscrutinioVotanteController.votos()}
+                                var barColors = ["#b91d47", "#00aba9", "#2b5797", "#e8c3b9", "#1e7145"]; 
+
+                                new Chart("myChart-barra", {
+                                  type: "horizontalBar",
+                                  data: {
+                                        labels: [""],
+                                        datasets: [
+                                           #{verEscrutinioVotanteController.pactometro()}
+                                        ]
+                                    },
+                                    options: {
+                                        plugins: {
+                                        title: {
+                                            display: true,
+                                            text: 'Chart.js Bar Chart - Stacked'
+                                        },
+                                        },
+                                        responsive: true,
+                                        scales: {
+                                        xAxes: [{
+                                            stacked: true,
+                                            beginatzero: true,
+                                            ticks: {
+                                                min: 0, max: 100,
+                                                callback: function(value, index, values) {
+                                                    if(value === 100){
+                                                        return 100;
+                                                    } else if (value === 50){
+                                                        return 50;
+                                                    } else if (value === 0)  {
+                                                        return 0;
+                                                    }
+                                                }
+                                            }                        
+                                        }],
+                                        yAxes: [{
+                                            stacked: true,
+                                        }]
+                                        }
+                                    }
+                                });
+                                </script>
+                            <h2>Mayoría absoluta 51 escaños</h2>
+                        </div>
+                    </div>
+                    
+                    <!--<input type="button" value="Imprimir" onclick="javascript:window.print()" />-->
+                </h:form>
+                
+            </h:body>
+
+        </html>
+    </ui:define>
 </ui:composition>
+
