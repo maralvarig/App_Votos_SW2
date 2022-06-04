@@ -31,4 +31,9 @@ public class IndexController implements Serializable{
     public String irElecAnteriores(){
         return "/privado/altaCategoria.xhtml?faces-redirect=true";
     }
+    
+    //Metodo que lleva a la pagina de escrutinios
+    public String irEscrutinio(){
+        return "/privado/escrutinio.xhtml?faces-redirect=true";
+    }
 }

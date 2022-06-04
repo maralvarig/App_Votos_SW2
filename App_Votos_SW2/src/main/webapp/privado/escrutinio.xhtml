@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<ui:composition template="/template/plantillaPublicaciones.xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:define name="content">
+        <html xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://xmlns.jcp.org/jsf/html"
+              xmlns:p="http://primefaces.org/ui"
+              xmlns:f="http://xmlns.jcp.org/jsf/core"
+              xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+            <h:head>
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <title>Elecciones generales de España noviembre 2022</title>
+
+                <!-- Font Awesome -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+                <!-- HOJA DE ESTILOS -->
+                <h:outputStylesheet library="css" name="escrutinio.css" />
+                
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+            </h:head>
+
+            <h:body>
+                <h:form>
+                     <div class="cabecera">
+        
+                        <div class="informacion" id="info">
+                            <p>INFORMACIÓN</p>
+                            <hr/>
+                            <div class="informacion-datos">
+                                <h4>ESCRUTADO: 100%</h4>
+                                <h4>PARTICIPACION: 58%</h4>
+                                <h4>FECHA: 04/06/2022</h4>
+                                <h4>TIPO: GENERALES</h4>
+                                <h4>LUGAR: ESPAÑA</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="elementos">
+
+                        <div class="seccion" id="semicirculo">
+                            <p>GRAFICO</p>
+                            <hr/>
+                            <canvas id="myChart" class="seccion-semicirculo"/>
+
+                            <script>
+                                var xValues = [" Italy", "France", "Spain", "USA", "Argentina"]; 
+                                var yValues = [55, 49, 44, 24, 15];
+                                var barColors = ["#b91d47", "#00aba9", "#2b5797", "#e8c3b9", "#1e7145"]; 
+                                new Chart('myChart', {
+                                    type: "doughnut", 
+                                    data: { 
+                                        labels: xValues, 
+                                        datasets: [{ 
+                                            backgroundColor: barColors, 
+                                            data: yValues 
+                                        }] 
+                                    },
+                                    options: {
+                                        rotation: 1 * Math.PI, 
+                                        circumference: 1 * Math.PI
+                                    }
+                                }); 
+                            </script>
+                            <h2>Total 100 escaños</h2>
+                        </div>
+
+                        <div class="seccion" id="tabla">
+                            <p>TABLA DE VOTOS</p>
+                            <hr/>
+                            <table class="seccion-tabla">
+                                <tr>
+                                    <th>Votos</th>
+                                    <th>Escaños</th>
+                                    <th>Partido</th>
+                                </tr>
+                                <tr>
+                                    <td>55</td>
+                                    <td></td>
+                                    <td>Italy</td>
+                                </tr>
+                                <tr>
+                                    <td>49</td>
+                                    <td></td>
+                                    <td>France</td>
+                                </tr>
+                                <tr>
+                                    <td>44</td>
+                                    <td></td>
+                                    <td>Spain</td>
+                                </tr>
+                                <tr>
+                                    <td>24</td>
+                                    <td></td>
+                                    <td>USA</td>
+                                </tr>
+                                <tr>
+                                    <td>15</td>
+                                    <td></td>
+                                    <td>Argentina</td>
+                                </tr>
+                            </table>
+                        </div>
+
+
+                    </div>
+
+                    <div class="pactometro">
+                        <div class="seccion" id="barra">
+                            <p>PACTOMETRO</p>
+                            <hr/>
+                            <canvas id="myChart-barra" height="120" width="700"/>
+                            <script>
+                                var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+                                var yValues = [30, 26, 23, 13, 8];
+                                var barColors = ["#b91d47", "#00aba9", "#2b5797", "#e8c3b9", "#1e7145"]; 
+
+                                new Chart("myChart-barra", {
+                                  type: "horizontalBar",
+                                  data: {
+                                        labels: [""],
+                                        datasets: [
+                                            {
+                                                label: xValues[0],
+                                                data: [yValues[0]],
+                                                backgroundColor:  barColors[0]
+                                            },
+                                            {
+                                                label: xValues[1],
+                                                data: [yValues[1]],
+                                                backgroundColor:  barColors[1]
+                                            },
+                                            {
+                                                label: xValues[2],
+                                                data: [yValues[2]],
+                                                backgroundColor:  barColors[2]
+                                            },
+                                            {
+                                                label: xValues[3],
+                                                data: [yValues[3]],
+                                                backgroundColor:  barColors[3]
+                                            },
+                                            {
+                                                label: xValues[4],
+                                                data: [yValues[4]],
+                                                backgroundColor:  barColors[4]
+                                            }
+                                        ]
+                                    },
+                                    options: {
+                                        plugins: {
+                                        title: {
+                                            display: true,
+                                            text: 'Chart.js Bar Chart - Stacked'
+                                        },
+                                        },
+                                        responsive: true,
+                                        scales: {
+                                        xAxes: [{
+                                            stacked: true,
+                                            beginatzero: true,
+                                            ticks: {
+                                                min: 0, max: 100,
+                                                callback: function(value, index, values) {
+                                                    if(value === 100){
+                                                        return 100;
+                                                    } else if (value === 50){
+                                                        return 50;
+                                                    } else if (value === 0)  {
+                                                        return 0;
+                                                    }
+                                                }
+                                            }                        
+                                        }],
+                                        yAxes: [{
+                                            stacked: true,
+                                        }]
+                                        }
+                                    }
+                                });
+                                </script>
+                            <h2>Mayoría absoluta 51 escaños</h2>
+                        </div>
+                    </div>
+                    
+                </h:form>
+                
+            </h:body>
+
+        </html>
+    </ui:define>
+</ui:composition>

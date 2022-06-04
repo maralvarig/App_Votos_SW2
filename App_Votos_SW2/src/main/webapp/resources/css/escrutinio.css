@@ -1,0 +1,116 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 4 jun. 2022, 7:43:47
+    Author     : sergio
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'century gothic';
+}
+
+.cabecera {
+    width: 100%;
+    min-width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+hr {
+    width: 100%;
+}
+
+.cabecera .informacion {
+    /*background-color: #f1efed;*/
+    padding: 10px 20px 30px;
+    height: fit-content;
+    width: 1240px;
+    min-width: 400px;
+    margin: 20px;
+}
+
+.informacion-datos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.informacion-datos h4{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.elementos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.seccion {
+    /*background-color: #f1efed;*/
+    padding: 10px 20px 30px;
+    height: 500px;
+    width: 600px;
+    min-width: 400px;
+    margin: 20px;
+}
+
+.pactometro {
+    width: 100%;
+    min-width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pactometro .seccion {
+    /*background-color: #f1efed;*/
+    padding: 10px 20px 30px;
+    height: fit-content;
+    width: 1240px;
+    margin: 20px;
+}
+
+.seccion-tabla , .seccion-semicirculo{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#semicirculo, #tabla ,#barra, #info p{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.seccion-tabla td,
+.seccion-tabla th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.seccion-tabla tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.seccion-tabla tr:hover {
+    background-color: #ddd;
+}
+
+.seccion-tabla th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4b6587;
+    color: white;
+}
+
