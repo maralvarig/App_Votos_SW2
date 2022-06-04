@@ -20,6 +20,10 @@
                 <h:outputStylesheet library="css" name="escrutinio.css" />
                 
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js" integrity="sha512-t2JWqzirxOmR9MZKu+BMz0TNHe55G5BZ/tfTmXMlxpUY8tsTo3QMD27QGoYKZKFAraIPDhFv56HLdN11ctmiTQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
             </h:head>
 
             <h:body>
@@ -30,11 +34,11 @@
                             <p>INFORMACIÓN</p>
                             <hr/>
                             <div class="informacion-datos">
-                                <h4>ESCRUTADO: 100%</h4>
-                                <h4>PARTICIPACION: 58%</h4>
-                                <h4>FECHA: #{verEscrutinioController.fecha}</h4>
-                                <h4>TIPO: #{verEscrutinioController.tipoEleccion}</h4>
-                                <h4>LUGAR: #{verEscrutinioController.localidad()}</h4>
+                                <h4 id="escrutado">ESCRUTADO: 100%</h4>
+                                <h4 id="participacion">PARTICIPACION: 58%</h4>
+                                <h4 id="fecha">FECHA: #{verEscrutinioController.fecha}</h4>
+                                <h4 id="tipo">TIPO: #{verEscrutinioController.tipoEleccion}</h4>
+                                <h4 id="lugar">LUGAR: #{verEscrutinioController.localidad()}</h4>
                             </div>
                         </div>
                     </div>
@@ -61,7 +65,16 @@
                                     options: {
                                         rotation: 1 * Math.PI, 
                                         circumference: 1 * Math.PI
-                                    }
+                                    },
+                                    plugins: [{
+                                        id: 'bgColor', 
+                                        beforeDraw: (chart, options) => {
+                                            const{ctx, width, height} = chart;
+                                            ctx.fillStyle = 'white';
+                                            ctx.fillRect(0, 0, width, height)
+                                            ctx.restore();
+                                        }
+                                    }]
                                 }); 
                             </script>
                             <h2>Total 100 escaños</h2>
@@ -70,7 +83,7 @@
                         <div class="seccion" id="tabla">
                             <p>TABLA DE VOTOS</p>
                             <hr/>
-                            <table class="seccion-tabla">
+                            <table id="tablaVotos" class="seccion-tabla">
                                 <tr>
                                     <th>Votos</th>
                                     <th>Escaños</th>
@@ -139,7 +152,39 @@
                     
                     <!--<input type="button" value="Imprimir" onclick="javascript:window.print()" />-->
                 </h:form>
-                
+                <script>
+                        function downloadPDF() {
+                            const canvas = document.getElementById('myChart');
+        
+                            //crear imagen
+                            const canvasImage  = canvas.toDataURL('image/jpeg', 1.0);
+
+                            let pdf = new jsPDF();
+                            var width = pdf.internal.pageSize.width;
+                            pdf.setFontSize(20);
+                            pdf.text('Informacion', width/2, 20,'center' );
+                            pdf.line(10, 22, 200, 22);
+                            pdf.setFontSize(10);
+                            pdf.text(document.getElementById("escrutado").innerText, 30, 32);
+                            pdf.text(document.getElementById("participacion").innerText, 30, 42);
+                            pdf.text(document.getElementById("fecha").innerText, 30, 52);
+                            pdf.text(document.getElementById("tipo").innerText, 30, 62);
+                            pdf.text(document.getElementById("lugar").innerText, 30, 72);
+                            pdf.setFontSize(20);
+                            pdf.text('Grafico', width/2, 87,'center' );
+                            pdf.line(10, 89, 200, 89);
+                            const marginX = (width - 100) / 2;
+                            pdf.addImage(canvasImage, 'JPEG', marginX, 94, 100, 0,'center' );
+                            pdf.text('Votos/Escaños', width/2, 160,'center' );
+                            pdf.line(10, 162, 200, 162);
+                            pdf.autoTable({ html: '#tablaVotos',
+                                margin: {top: 172},
+                            });
+
+                            pdf.save('grafico.pdf');
+                        }
+                </script>
+                <p:link id="pdf" value="Generar PDF" href="javascript:downloadPDF()" style="align-self: center"/>
             </h:body>
 
         </html>
