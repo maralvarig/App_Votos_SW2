@@ -159,6 +159,8 @@ public class AdminController implements Serializable{
     }
     
     public String crearEleccion(){
+        
+        
         double fechaE = (fecha.getYear()+1900)*10000+(fecha.getMonth()+1)*100+fecha.getDate();
         double fechah;
         fechah = (LocalDateTime.now().getYear())*10000+(LocalDateTime.now().getMonthValue())*100+LocalDateTime.now().getDayOfMonth();
@@ -167,7 +169,7 @@ public class AdminController implements Serializable{
             FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"La fecha es anterior a la actual.", null));
             return "crearEleccion.xhtml?faces-redirect=true";
         }
-        eleccion.setFecha(fecha.getDay()+"/"+fecha.getMonth()+"/"+(fecha.getYear()+1900));
+        eleccion.setFecha(fecha.getDate()+"/"+fecha.getMonth()+"/"+(fecha.getYear()+1900));
         eleccion.setLocalidad_idLocalidad(localidad);
         try{
             eleccionEJB.create(eleccion);
