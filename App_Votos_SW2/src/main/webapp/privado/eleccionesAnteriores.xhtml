@@ -40,11 +40,12 @@
                     <h:outputText value="#{eleccion.localidad_idLocalidad.comunidad_Autonoma} #{eleccion.localidad_idLocalidad.provincia} #{eleccion.localidad_idLocalidad.municipio} #{eleccion.localidad_idLocalidad.codigo_Postal}"/>
                 </p:column>
                 <p:column headerText="Partidos e integrantes">
-                    <h:commandLink action="visualizarPartidosVotante" actionListener="#{eleccionesAnterioresController.visualizarPartidos(eleccion)}">
+                    <h:commandLink action="visualizarPartidosVotanteElecAnterior" actionListener="#{eleccionesAnterioresController.visualizarPartidos(eleccion)}">
                         <h:graphicImage library="img" name="otros/partidos.png" width="30px" />
                     </h:commandLink>
                 </p:column>
                 <p:column headerText="Ver escrutinio">
+                  <p:commandButton id="Votar" value="Escrutinio" action="#{eleccionesAnterioresController.verEscrutinio(eleccion)}" disabled="#{not eleccionesAnterioresController.existeEscrutinio(eleccion)}"/>
                 </p:column>
               </p:dataTable>
             </h:panelGrid>

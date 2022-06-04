@@ -20,6 +20,8 @@ C:\Users\dnarc\Documents\GitHub\App_Votos_SW2\App_Votos_SW2\src\main\java\modelo
 C:\Users\dnarc\Documents\GitHub\App_Votos_SW2\App_Votos_SW2\src\main\java\modelo\Localidad.java
 C:\Users\dnarc\Documents\GitHub\App_Votos_SW2\App_Votos_SW2\src\main\java\modelo\Partidos.java
 C:\Users\dnarc\Documents\GitHub\App_Votos_SW2\App_Votos_SW2\src\main\java\controller\eleccionesAnterioresController.java
+C:\Users\dnarc\Documents\GitHub\App_Votos_SW2\App_Votos_SW2\src\main\java\controller\visualizarPartidosVotanteElecAnteriorController.java
+C:\Users\dnarc\Documents\GitHub\App_Votos_SW2\App_Votos_SW2\src\main\java\controller\verEscrutinioController.java
 C:\Users\dnarc\Documents\GitHub\App_Votos_SW2\App_Votos_SW2\src\main\java\EJB\PartidosFacade.java
 C:\Users\dnarc\Documents\GitHub\App_Votos_SW2\App_Votos_SW2\src\main\java\EJB\VotoFacade.java
 C:\Users\dnarc\Documents\GitHub\App_Votos_SW2\App_Votos_SW2\src\main\java\EJB\EleccionesFacade.java

@@ -7,6 +7,7 @@ package EJB;
 
 import java.util.List;
 import javax.ejb.Local;
+import modelo.Elecciones;
 import modelo.Escrutinio;
 
 /**
@@ -29,5 +30,9 @@ public interface EscrutinioFacadeLocal {
     List<Escrutinio> findRange(int[] range);
 
     int count();
+    
+    boolean existeEscrutinio(Elecciones eleccion);
+            
+    List<Escrutinio> obtenerResultado(Elecciones eleccion);
     
 }

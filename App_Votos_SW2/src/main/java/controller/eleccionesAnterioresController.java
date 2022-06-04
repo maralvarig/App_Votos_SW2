@@ -6,6 +6,7 @@
 package controller;
 
 import EJB.EleccionesFacadeLocal;
+import EJB.EscrutinioFacadeLocal;
 import EJB.VotoFacadeLocal;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -41,6 +42,9 @@ public class eleccionesAnterioresController implements Serializable{
     
     @EJB
     private VotoFacadeLocal votoEJB;
+    
+     @EJB
+    private EscrutinioFacadeLocal escrutinioEJB;
     
     
     
@@ -85,6 +89,14 @@ public class eleccionesAnterioresController implements Serializable{
         this.eleccion = eleccion;
     }
     
+    public String verEscrutinio(Elecciones eleccion){
+        this.eleccion = eleccion;
+        return "verEscrutinio.xhtml?faces-redirect=true";
+    }
+    
+    public boolean existeEscrutinio(Elecciones eleccion){
+        return escrutinioEJB.existeEscrutinio(eleccion);
+    }
    
     public String getPartido() {
         return partido;

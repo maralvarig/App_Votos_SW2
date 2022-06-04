@@ -32,7 +32,5 @@ public interface PartidosFacadeLocal {
     int count();
     
     List<Partidos> encontrarPartidos(Elecciones eleccion);
-
-    
     
 }

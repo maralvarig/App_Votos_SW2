@@ -7,6 +7,7 @@ package EJB;
 
 import java.util.List;
 import javax.ejb.Local;
+import modelo.Elecciones;
 import modelo.Voto;
 
 /**
@@ -29,5 +30,7 @@ public interface VotoFacadeLocal {
     List<Voto> findRange(int[] range);
 
     int count();
+    
+    List<Voto> buscarVotos(Elecciones eleccion);
     
 }

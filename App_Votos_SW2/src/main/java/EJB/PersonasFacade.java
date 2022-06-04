@@ -41,6 +41,7 @@ public class PersonasFacade extends AbstractFacade<Personas> implements Personas
         
         return (resultado.size() != 0);
     }
+    
     @Override
     public Personas getPersonaDNI(String DNI){
         String consulta = "FROM Personas p WHERE p.DNI=:param1";

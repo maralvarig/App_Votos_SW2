@@ -52,4 +52,5 @@ public class EleccionesFacade extends AbstractFacade<Elecciones> implements Elec
         List<Elecciones> listaElecciones = query.getResultList();
         return listaElecciones;
     }
+
 }

@@ -5,9 +5,12 @@
  */
 package EJB;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import modelo.Elecciones;
 import modelo.Voto;
 
 /**
@@ -29,4 +32,13 @@ public class VotoFacade extends AbstractFacade<Voto> implements VotoFacadeLocal 
         super(Voto.class);
     }
     
+    @Override
+    public List<Voto> buscarVotos(Elecciones eleccion){
+        String consulta = "FROM Voto v WHERE v.Elecciones_idElecciones=:param1";
+        Query query = em.createQuery(consulta);
+        query.setParameter("param1", eleccion);
+        
+        List<Voto> listaVotos = query.getResultList();
+        return listaVotos;
+    } 
 }

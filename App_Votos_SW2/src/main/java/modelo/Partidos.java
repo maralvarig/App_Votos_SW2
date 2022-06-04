@@ -35,6 +35,9 @@ public class Partidos implements Serializable{
     @JoinColumn(name="Elecciones_idElecciones")
     @ManyToOne
     private Elecciones Elecciones_idElecciones; 
+    
+    @Column(name="ProgramaElectoral")
+    private String ProgramaElectoral;
 
     public int getIdPartidos() {
         return idPartidos;
@@ -59,5 +62,12 @@ public class Partidos implements Serializable{
     public void setElecciones_idElecciones(Elecciones Elecciones_idElecciones) {
         this.Elecciones_idElecciones = Elecciones_idElecciones;
     }
-    
+
+    public String getProgramaElectoral() {
+        return ProgramaElectoral;
+    }
+
+    public void setProgramaElectoral(String ProgramaElectoral) {
+        this.ProgramaElectoral = ProgramaElectoral;
+    }
 }
