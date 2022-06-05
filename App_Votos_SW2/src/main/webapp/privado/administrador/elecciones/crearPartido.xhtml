@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <!-- HOJA DE ESTILOS -->
-    <h:outputStylesheet library="css" name="eleccionesProgramadas.css" />
+    <h:outputStylesheet library="css" name="admin.css" />
     
 </h:head>
 <h:form>
@@ -23,8 +23,7 @@
                 <p:autoUpdate/>
             </p:messages>
             <h:body onload="#{adminController.verificarYMostrar()}">
-            <h:commandButton id="botonInicio" value="Cerrar Sesion" styleClass="ui-button-info" action="#{adminController.destruirSesion()}"/>
-            <h:panelGrid id="grid">
+            <h:panelGrid class="seccion" id="grid">
                 <p:fieldset legend="Datos partido">
                     <h:panelGrid columns="3" cellpadding="7">
                         <p:outputLabel value="Nombre del partido: "/>
@@ -40,7 +39,11 @@
                     </h:panelGrid>
                 </p:fieldset>
             </h:panelGrid>
-            <p:commandButton id="submitButton" value="Crear" action="#{adminController.crearPartido()}" update="grid"/>
+            
+            <div class="seccion">
+                <h:commandButton class="boton_style" id="submitButton" value="Crear" action="#{adminController.crearPartido()}"/>
+                <h:commandButton class="boton_style" id="botonInicio" value="Cerrar Sesion" action="#{adminController.destruirSesion()}"/>
+            </div>
             </h:body>
         </h:form>
 

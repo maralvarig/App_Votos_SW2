@@ -15,6 +15,20 @@ body {
     font-family: 'century gothic';
 }
 
+
+/**
+ *
+ * Seccion
+ *
+ */
+
+.seccion-boton {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin: 40px;
+}
+
 .cabecera {
     width: 100%;
     min-width: 400px;
@@ -112,4 +126,25 @@ hr {
     text-align: left;
     background-color: #4b6587;
     color: white;
+}
+
+/**
+ *
+ * ESTILOS BOTON
+ *
+ */
+
+.boton_style {
+    text-decoration: none;
+}
+
+.boton_style:hover{
+    background-color: #C8C6C6;
+    color: black;    
+    box-shadow: 1.5px 1.5px 8px -1px #C8C6C6;
+}
+
+.boton_style:disabled{
+    opacity: 0.3;
+    pointer-events: none;
 }

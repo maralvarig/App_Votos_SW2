@@ -15,23 +15,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <!-- HOJA DE ESTILOS -->
-    <h:outputStylesheet library="css" name="eleccionesProgramadas.css" />
+    <h:outputStylesheet library="css" name="admin.css" />
     
 </h:head>
     <h:form>
         <h:body onload="#{adminController.verificarYMostrar()}">
-        <h:commandButton id="botonInicio" value="Cerrar Sesion" styleClass="ui-button-info" action="#{adminController.destruirSesion()}"/>
         <p:messages id="messages" /> <!--Mensaje de arriba -->
 
-        <h:panelGrid id="grid">
+        <h:panelGrid class="seccion" id="grid">
                     <p:fieldset legend="Acciones Generales">
-                        <h:panelGrid columns="3" cellpadding="7">
-                            <h:commandButton id="crearEleccion" value="Crear Eleccion" action="#{adminController.irCrearEleccion()}"/>  
-                            <h:commandButton id="crearPartido" value="Crear Partido" action="#{adminController.irCrearPartido()}"/>
-                            <h:commandButton id="buscarEleccion" value="Buscar Eleccion" action="#{adminController.buscarEleccion()}"/>
+                        <h:panelGrid class="seccion-grid" columns="3" cellpadding="7">
+                            <h:commandButton class="boton_style" id="crearEleccion" value="Crear Eleccion" action="#{adminController.irCrearEleccion()}"/>  
+                            <h:commandButton class="boton_style" id="crearPartido" value="Crear Partido" action="#{adminController.irCrearPartido()}"/>
+                            <h:commandButton class="boton_style" id="buscarEleccion" value="Buscar Eleccion" action="#{adminController.buscarEleccion()}"/>
                         </h:panelGrid>
                     </p:fieldset>
         </h:panelGrid>
+        
+        <div class="seccion" id="cerrarSesion">
+            <h:commandButton id="botonInicio" value="Cerrar Sesion" class="boton_style" action="#{adminController.destruirSesion()}"/>
+        </div>
 
         </h:body>
     </h:form>

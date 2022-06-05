@@ -18,7 +18,7 @@
 
                 <!-- HOJA DE ESTILOS -->
                 <h:outputStylesheet library="css" name="escrutinio.css" />
-                
+
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js" integrity="sha512-t2JWqzirxOmR9MZKu+BMz0TNHe55G5BZ/tfTmXMlxpUY8tsTo3QMD27QGoYKZKFAraIPDhFv56HLdN11ctmiTQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
@@ -27,9 +27,20 @@
             </h:head>
 
             <h:body>
+                <div class="seccion-boton">
+                        <p:linkButton id="pdf" value="Generar PDF" style="
+                            border-radius: 5px;
+                            border-color: #4B6587;
+                            background-color: #4B6587;
+                            color: white;
+                            cursor: pointer;
+                            box-shadow: 1.5px 1.5px 8px -1px #4B6587;"
+                            href="javascript:downloadPDF()" />
+                </div>
+                
                 <h:form id="Escrutinio">
-                     <div class="cabecera">
-        
+                    <div class="cabecera">
+
                         <div class="informacion" id="info">
                             <p>INFORMACIÓN</p>
                             <hr/>
@@ -50,32 +61,32 @@
                             <canvas id="myChart" class="seccion-semicirculo"/>
 
                             <script>
-                                var xValues = #{verEscrutinioController.partidos()} 
+                                var xValues = #{verEscrutinioController.partidos()}
                                 var yValues = #{verEscrutinioController.votos()}
-                                var barColors = ["#b91d47", "#00aba9", "#2b5797", "#e8c3b9", "#1e7145"]; 
+                                var barColors = ["#b91d47", "#00aba9", "#2b5797", "#e8c3b9", "#1e7145"];
                                 new Chart('myChart', {
-                                    type: "doughnut", 
-                                    data: { 
-                                        labels: xValues, 
-                                        datasets: [{ 
-                                            backgroundColor: barColors, 
-                                            data: yValues 
-                                        }] 
+                                    type: "doughnut",
+                                    data: {
+                                        labels: xValues,
+                                        datasets: [{
+                                                backgroundColor: barColors,
+                                                data: yValues
+                                            }]
                                     },
                                     options: {
-                                        rotation: 1 * Math.PI, 
+                                        rotation: 1 * Math.PI,
                                         circumference: 1 * Math.PI
                                     },
                                     plugins: [{
-                                        id: 'bgColor', 
-                                        beforeDraw: (chart, options) => {
-                                            const{ctx, width, height} = chart;
-                                            ctx.fillStyle = 'white';
-                                            ctx.fillRect(0, 0, width, height)
-                                            ctx.restore();
-                                        }
-                                    }]
-                                }); 
+                                            id: 'bgColor',
+                                            beforeDraw: (chart, options) => {
+                                                const{ctx, width, height} = chart;
+                                                ctx.fillStyle = 'white';
+                                                ctx.fillRect(0, 0, width, height)
+                                                ctx.restore();
+                                            }
+                                        }]
+                                });
                             </script>
                             <h2>Total 100 escaños</h2>
                         </div>
@@ -92,8 +103,6 @@
                                 <h:outputText escape="false" value="#{verEscrutinioController.tabla()}"/>
                             </table>
                         </div>
-
-
                     </div>
 
                     <div class="pactometro">
@@ -104,87 +113,116 @@
                             <script>
                                 var xValues = #{verEscrutinioController.partidos()}
                                 var yValues = #{verEscrutinioController.votos()}
-                                var barColors = ["#b91d47", "#00aba9", "#2b5797", "#e8c3b9", "#1e7145"]; 
+                                var barColors = ["#b91d47", "#00aba9", "#2b5797", "#e8c3b9", "#1e7145"];
 
                                 new Chart("myChart-barra", {
-                                  type: "horizontalBar",
-                                  data: {
+                                    type: "horizontalBar",
+                                    data: {
                                         labels: [""],
                                         datasets: [
-                                           #{verEscrutinioController.pactometro()}
+                                #{verEscrutinioController.pactometro()}
                                         ]
                                     },
                                     options: {
                                         plugins: {
-                                        title: {
-                                            display: true,
-                                            text: 'Chart.js Bar Chart - Stacked'
-                                        },
+                                            title: {
+                                                display: true,
+                                                text: 'Chart.js Bar Chart - Stacked'
+                                            },
                                         },
                                         responsive: true,
                                         scales: {
-                                        xAxes: [{
-                                            stacked: true,
-                                            beginatzero: true,
-                                            ticks: {
-                                                min: 0, max: 100,
-                                                callback: function(value, index, values) {
-                                                    if(value === 100){
-                                                        return 100;
-                                                    } else if (value === 50){
-                                                        return 50;
-                                                    } else if (value === 0)  {
-                                                        return 0;
+                                            xAxes: [{
+                                                    stacked: true,
+                                                    beginatzero: true,
+                                                    ticks: {
+                                                        min: 0, max: 100,
+                                                        callback: function (value, index, values) {
+                                                            if (value === 100) {
+                                                                return 100;
+                                                            } else if (value === 50) {
+                                                                return 50;
+                                                            } else if (value === 0) {
+                                                                return 0;
+                                                            }
+                                                        }
                                                     }
-                                                }
-                                            }                        
-                                        }],
-                                        yAxes: [{
-                                            stacked: true,
-                                        }]
+                                                }],
+                                            yAxes: [{
+                                                    stacked: true,
+                                                }]
                                         }
                                     }
                                 });
-                                </script>
+                            </script>
                             <h2>Mayoría absoluta 51 escaños</h2>
                         </div>
                     </div>
-                    
+
                     <!--<input type="button" value="Imprimir" onclick="javascript:window.print()" />-->
                 </h:form>
                 <script>
-                        function downloadPDF() {
-                            const canvas = document.getElementById('myChart');
-        
-                            //crear imagen
-                            const canvasImage  = canvas.toDataURL('image/jpeg', 1.0);
+                    /*document.getElementById("RootNode").onclick(){
+                        const canvas = document.getElementById('myChart');
 
-                            let pdf = new jsPDF();
-                            var width = pdf.internal.pageSize.width;
-                            pdf.setFontSize(20);
-                            pdf.text('Informacion', width/2, 20,'center' );
-                            pdf.line(10, 22, 200, 22);
-                            pdf.setFontSize(10);
-                            pdf.text(document.getElementById("escrutado").innerText, 30, 32);
-                            pdf.text(document.getElementById("participacion").innerText, 30, 42);
-                            pdf.text(document.getElementById("fecha").innerText, 30, 52);
-                            pdf.text(document.getElementById("tipo").innerText, 30, 62);
-                            pdf.text(document.getElementById("lugar").innerText, 30, 72);
-                            pdf.setFontSize(20);
-                            pdf.text('Grafico', width/2, 87,'center' );
-                            pdf.line(10, 89, 200, 89);
-                            const marginX = (width - 100) / 2;
-                            pdf.addImage(canvasImage, 'JPEG', marginX, 94, 100, 0,'center' );
-                            pdf.text('Votos/Escaños', width/2, 160,'center' );
-                            pdf.line(10, 162, 200, 162);
-                            pdf.autoTable({ html: '#tablaVotos',
-                                margin: {top: 172},
-                            });
+                        //crear imagen
+                        const canvasImage = canvas.toDataURL('image/jpeg', 1.0);
 
-                            pdf.save('grafico.pdf');
-                        }
+                        let pdf = new jsPDF();
+                        var width = pdf.internal.pageSize.width;
+                        pdf.setFontSize(20);
+                        pdf.text('Informacion', width / 2, 20, 'center');
+                        pdf.line(10, 22, 200, 22);
+                        pdf.setFontSize(10);
+                        pdf.text(document.getElementById("escrutado").innerText, 30, 32);
+                        pdf.text(document.getElementById("participacion").innerText, 30, 42);
+                        pdf.text(document.getElementById("fecha").innerText, 30, 52);
+                        pdf.text(document.getElementById("tipo").innerText, 30, 62);
+                        pdf.text(document.getElementById("lugar").innerText, 30, 72);
+                        pdf.setFontSize(20);
+                        pdf.text('Grafico', width / 2, 87, 'center');
+                        pdf.line(10, 89, 200, 89);
+                        const marginX = (width - 100) / 2;
+                        pdf.addImage(canvasImage, 'JPEG', marginX, 94, 100, 0, 'center');
+                        pdf.text('Votos/Escaños', width / 2, 160, 'center');
+                        pdf.line(10, 162, 200, 162);
+                        pdf.autoTable({html: '#tablaVotos',
+                            margin: {top: 172},
+                        });
+
+                        pdf.save('grafico.pdf');
+                    }*/
+                    function downloadPDF() {
+                        const canvas = document.getElementById('myChart');
+
+                        //crear imagen
+                        const canvasImage = canvas.toDataURL('image/jpeg', 1.0);
+
+                        let pdf = new jsPDF();
+                        var width = pdf.internal.pageSize.width;
+                        pdf.setFontSize(20);
+                        pdf.text('Informacion', width / 2, 20, 'center');
+                        pdf.line(10, 22, 200, 22);
+                        pdf.setFontSize(10);
+                        pdf.text(document.getElementById("escrutado").innerText, 30, 32);
+                        pdf.text(document.getElementById("participacion").innerText, 30, 42);
+                        pdf.text(document.getElementById("fecha").innerText, 30, 52);
+                        pdf.text(document.getElementById("tipo").innerText, 30, 62);
+                        pdf.text(document.getElementById("lugar").innerText, 30, 72);
+                        pdf.setFontSize(20);
+                        pdf.text('Grafico', width / 2, 87, 'center');
+                        pdf.line(10, 89, 200, 89);
+                        const marginX = (width - 100) / 2;
+                        pdf.addImage(canvasImage, 'JPEG', marginX, 94, 100, 0, 'center');
+                        pdf.text('Votos/Escaños', width / 2, 160, 'center');
+                        pdf.line(10, 162, 200, 162);
+                        pdf.autoTable({html: '#tablaVotos',
+                            margin: {top: 172},
+                        });
+
+                        pdf.save('grafico.pdf');
+                    }
                 </script>
-                <p:link id="pdf" value="Generar PDF" href="javascript:downloadPDF()" style="align-self: center"/>
             </h:body>
 
         </html>

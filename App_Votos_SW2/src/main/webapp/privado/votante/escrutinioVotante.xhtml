@@ -28,6 +28,16 @@
 
             <h:body>
                 <h:form id="Escrutinio">
+                    <div class="seccion-boton">
+                        <p:linkButton id="pdf" value="Generar PDF" style="
+                            border-radius: 5px;
+                            border-color: #4B6587;
+                            background-color: #4B6587;
+                            color: white;
+                            cursor: pointer;
+                            box-shadow: 1.5px 1.5px 8px -1px #4B6587;"
+                            href="javascript:downloadPDF()" />
+                    </div>
                      <div class="cabecera">
         
                         <div class="informacion" id="info">
@@ -184,7 +194,6 @@
                             pdf.save('grafico.pdf');
                         }
                 </script>
-                <p:link id="pdf" value="Generar PDF" href="javascript:downloadPDF()" style="align-self: center"/>
             </h:body>
 
         </html>

@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <!-- HOJA DE ESTILOS -->
-    <h:outputStylesheet library="css" name="eleccionesProgramadas.css" />
+    <h:outputStylesheet library="css" name="admin.css" />
     
 </h:head>
 <h:form>
@@ -45,7 +45,7 @@
                     </h:commandLink>
                 </p:column>
                 <p:column headerText="Ver escrutinio">
-                  <p:commandButton id="Votar" value="Escrutinio" action="#{eleccionesAnterioresController.verEscrutinio(eleccion)}" disabled="#{not eleccionesAnterioresController.existeEscrutinio(eleccion)}"/>
+                  <h:commandButton id="escrutinio"  class="boton-tabla" value="Escrutinio" action="#{eleccionesAnterioresController.verEscrutinio(eleccion)}" disabled="#{not eleccionesAnterioresController.existeEscrutinio(eleccion)}"/>
                 </p:column>
               </p:dataTable>
             </h:panelGrid>

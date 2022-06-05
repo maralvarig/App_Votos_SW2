@@ -1,0 +1,92 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 05-jun-2022, 12:20:23
+    Author     : dnarc
+*/
+
+/**
+ *
+ * Seccion
+ *
+ */
+
+.seccion {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin: 40px;
+}
+
+.seccion#buscar {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.seccion-buscar {
+    margin: 15px;
+}
+
+/**
+ *
+ * ESTILOS BOTON
+ *
+ */
+
+.boton_style {
+    height: 45px;
+    width: 270px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 700;
+    background-color: #4B6587;
+    color: white;
+    cursor: pointer;
+    box-shadow: 1.5px 1.5px 8px -1px #4B6587;
+    margin: 10px;
+}
+
+.boton_style:hover{
+    background-color: #C8C6C6;
+    color: black;    
+    box-shadow: 1.5px 1.5px 8px -1px #C8C6C6;
+}
+
+.boton_style:disabled{
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.boton-tabla {
+    border: none;
+    border-radius: 5px;
+    background-color: #4B6587;
+    color: white;
+    cursor: pointer;
+    box-shadow: 1.5px 1.5px 8px -1px #4B6587;
+    height: 45px;
+    width: 150px;
+}
+
+.boton-tabla:hover{
+    background-color: #C8C6C6;
+    color: black;    
+    box-shadow: 1.5px 1.5px 8px -1px #C8C6C6;
+}
+
+.boton-tabla:disabled{
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.seccion-grid .boton_style {
+    height: 200px;
+    font-size: 30px; 
+}
