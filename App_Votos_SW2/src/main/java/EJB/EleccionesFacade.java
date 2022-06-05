@@ -5,13 +5,13 @@
  */
 package EJB;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import modelo.Elecciones;
+import modelo.Localidad;
 
 /**
  *
@@ -51,6 +51,19 @@ public class EleccionesFacade extends AbstractFacade<Elecciones> implements Elec
         
         List<Elecciones> listaElecciones = query.getResultList();
         return listaElecciones;
+    }
+    
+    @Override
+    public boolean existeEleccion(Localidad l,String tipo, String fecha){
+        String consulta = "FROM Elecciones e WHERE e.Tipo=:param1 AND e.Fecha=:param2 AND e.Localidad_idLocalidad=:param3";
+        Query query = em.createQuery(consulta);
+        query.setParameter("param1", tipo);
+        query.setParameter("param2", fecha);
+        query.setParameter("param3", l);
+        
+        List<Elecciones> listaElecciones = query.getResultList();
+        
+        return !listaElecciones.isEmpty();
     }
 
 }

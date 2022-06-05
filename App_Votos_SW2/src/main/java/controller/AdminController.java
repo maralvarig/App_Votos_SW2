@@ -164,13 +164,18 @@ public class AdminController implements Serializable{
         double fechaE = (fecha.getYear()+1900)*10000+(fecha.getMonth()+1)*100+fecha.getDate();
         double fechah;
         fechah = (LocalDateTime.now().getYear())*10000+(LocalDateTime.now().getMonthValue())*100+LocalDateTime.now().getDayOfMonth();
-        if(Double.compare(fechah, fechaE)!=-1 || Double.compare(fechah, fechaE)==0){
+        if(Double.compare(fechah, fechaE)>0){
             FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
             FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"La fecha es anterior a la actual.", null));
             return "crearEleccion.xhtml?faces-redirect=true";
         }
-        eleccion.setFecha(fecha.getDate()+"/"+fecha.getMonth()+"/"+(fecha.getYear()+1900));
+        eleccion.setFecha(fecha.getDate()+"/"+(fecha.getMonth()+1)+"/"+(fecha.getYear()+1900));
         eleccion.setLocalidad_idLocalidad(localidad);
+        if(eleccionEJB.existeEleccion(localidad, eleccion.getTipo(), fecha.getDate()+"/"+(fecha.getMonth()+1)+"/"+(fecha.getYear()+1900))){
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+            FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"La eleccion ya existe.", null));
+            return "crearEleccion.xhtml?faces-redirect=true";
+        }
         try{
             eleccionEJB.create(eleccion);
         }catch(Exception e){
@@ -179,6 +184,17 @@ public class AdminController implements Serializable{
         FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
         FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Eleccion Creada", null));
         return "/index.xhtml?faces-redirect=true";
+    }
+    
+            //Comprueba si el partido ya existe para la eleccion
+    public boolean existeEleccion(Elecciones eleccion){
+        List<Elecciones> lista = eleccionEJB.buscarElecciones(eleccion);
+        for (int i = 0; i < lista.size(); i++) {
+            if(lista.get(i).getFecha().equals(eleccion.getFecha())){
+                return true;
+            }
+        }
+        return false;
     }
     
     public String buscarEleccion(){

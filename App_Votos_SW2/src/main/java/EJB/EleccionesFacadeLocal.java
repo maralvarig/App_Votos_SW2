@@ -8,6 +8,7 @@ package EJB;
 import java.util.List;
 import javax.ejb.Local;
 import modelo.Elecciones;
+import modelo.Localidad;
 
 /**
  *
@@ -33,5 +34,7 @@ public interface EleccionesFacadeLocal {
     public Elecciones getElecction(int i);
     
     List<Elecciones> buscarElecciones(Elecciones eleccion);
+    
+    boolean existeEleccion(Localidad l,String tipo, String fecha);
     
 }
