@@ -28,7 +28,7 @@
             </p:messages>
             <h:body>
             <h:panelGrid id="grid">
-                
+                <p:commandButton id="Actualizar" value="Actualizar" action="#{eleccionesProgramadasController.actualizar()}" update="grid"/>
                 <p:dataTable var="eleccion" value="#{eleccionesProgramadasController.listaElecciones}" allowUnsorting="true" sortMode="single">
                 <p:column sortBy="#{eleccion.fecha}" headerText="Fecha">
                     <h:outputText value="#{eleccion.fecha}"/>

@@ -174,6 +174,7 @@ public class AdminController implements Serializable{
         if(eleccionEJB.existeEleccion(localidad, eleccion.getTipo(), fecha.getDate()+"/"+(fecha.getMonth()+1)+"/"+(fecha.getYear()+1900))){
             FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
             FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"La eleccion ya existe.", null));
+            listaElecciones=null;
             return "crearEleccion.xhtml?faces-redirect=true";
         }
         try{
@@ -183,6 +184,7 @@ public class AdminController implements Serializable{
         }
         FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
         FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Eleccion Creada", null));
+        listaElecciones=null;
         return "/index.xhtml?faces-redirect=true";
     }
     

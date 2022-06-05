@@ -62,6 +62,7 @@ public class eleccionesProgramadasController implements Serializable{
         part = new Partidos();
         voto = new Voto();
         eleccion = new Elecciones();
+        
         listaElecciones = filtrarElecciones(eleccionesEJB.findAll());
         
     }
@@ -72,6 +73,9 @@ public class eleccionesProgramadasController implements Serializable{
         return "votar.xhtml?faces-redirect=true";
     }
     
+    public void actualizar(){
+        listaElecciones = filtrarElecciones(eleccionesEJB.findAll());
+    }
     //Obtiene las elecciones programadas (fecha hoy o superior)
     public List<Elecciones> filtrarElecciones(List<Elecciones> lista){
         List<Elecciones> filtrada = new ArrayList();
