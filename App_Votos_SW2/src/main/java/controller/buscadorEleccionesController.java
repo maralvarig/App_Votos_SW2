@@ -144,10 +144,10 @@ public class buscadorEleccionesController implements Serializable{
                 return eleccion.getLocalidad_idLocalidad().getComunidad_Autonoma();
         }
         if(eleccion.getTipo().equals("Provinciales")){
-                return eleccion.getLocalidad_idLocalidad().getMunicipio();
+                return eleccion.getLocalidad_idLocalidad().getProvincia();
         }
         if(eleccion.getTipo().equals("Municipales")){
-                return eleccion.getLocalidad_idLocalidad().getProvincia();
+                return eleccion.getLocalidad_idLocalidad().getMunicipio();
         }
         return "DESCONOCIDO";
     }
