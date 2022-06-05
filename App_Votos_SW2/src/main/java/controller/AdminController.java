@@ -35,6 +35,7 @@ public class AdminController implements Serializable{
     private Localidad localidad;
     private List<Localidad> listaLocalidades;
     private List<Elecciones> listaElecciones;
+    private List<Elecciones> listaElecciones2;
     private ArrayList<String> municipios;
     private Partidos partido;
     
@@ -54,6 +55,7 @@ public class AdminController implements Serializable{
         listaLocalidades = localidadEJB.findAll();
         partido = new Partidos();
         listaElecciones = filtrarEleccionesPasadas(eleccionEJB.findAll());
+        listaElecciones2 = filtrarElecciones(eleccionEJB.findAll());
         municipios = new ArrayList<String>();
     }
     //Metodo que lleva a la página del administrador
@@ -99,6 +101,32 @@ public class AdminController implements Serializable{
                 return eleccion.getLocalidad_idLocalidad().getProvincia();
         }
         return "DESCONOCIDO";
+    }
+    
+    public List<Elecciones> filtrarElecciones(List<Elecciones> lista){
+        List<Elecciones> filtrada = new ArrayList();
+        for (int i = 0; i < lista.size(); i++) {
+            String[] fechaEleccion = lista.get(i).getFecha().split("/");
+            //YEAR
+            if(Integer.parseInt(fechaEleccion[2]) > LocalDateTime.now().getYear()){
+                filtrada.add(lista.get(i));
+            }else{
+                if(LocalDateTime.now().getYear() == Integer.parseInt(fechaEleccion[2])){
+                    //MONTH
+                    if(Integer.parseInt(fechaEleccion[1]) > LocalDateTime.now().getMonthValue()){
+                        filtrada.add(lista.get(i));
+                    }else{
+                       if(LocalDateTime.now().getMonthValue() == Integer.parseInt(fechaEleccion[1])){
+                           //DAY
+                           if(Integer.parseInt(fechaEleccion[0]) >= LocalDateTime.now().getDayOfMonth()){
+                               filtrada.add(lista.get(i));
+                           }
+                       }
+                    }
+                }
+            }
+        }
+        return filtrada;
     }
     
     public String crearPartido(){
@@ -220,6 +248,16 @@ public class AdminController implements Serializable{
         }
     }
 
+    public List<Elecciones> getListaElecciones2() {
+        return listaElecciones2;
+    }
+
+    public void setListaElecciones2(List<Elecciones> listaElecciones2) {
+        this.listaElecciones2 = listaElecciones2;
+    }
+
+    
+    
     public Localidad getLocalidad() {
         return localidad;
     }

@@ -35,7 +35,7 @@
                         <br/>
                        <p:outputLabel value="Eleccion: " />
                        <p:selectOneMenu id="eleccion" value="#{adminController.eleccion.idElecciones}" label="Localidades" filter="true" dynamic="true" style="width:100%">
-                           <f:selectItems value="#{adminController.listaElecciones}" var="eleccion" itemLabel="#{eleccion.fecha} #{adminController.localidad(eleccion)} #{eleccion.tipo}" itemValue="#{eleccion.idElecciones}"/>
+                           <f:selectItems value="#{adminController.listaElecciones2}" var="eleccion" itemLabel="#{eleccion.fecha} #{adminController.localidad(eleccion)} #{eleccion.tipo}" itemValue="#{eleccion.idElecciones}"/>
                        </p:selectOneMenu>
                     </h:panelGrid>
                 </p:fieldset>
